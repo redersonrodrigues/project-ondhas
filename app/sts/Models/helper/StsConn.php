@@ -16,7 +16,7 @@ if (!defined('R1A0M4A2R2')) {
  *
  * @author Réderson rederson@ramartecnologia.com.br
  */
-class StsConn
+abstract class StsConn
 {
 
     /** @var string $host Recebe o host da constante HOST */
