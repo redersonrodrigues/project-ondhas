@@ -15,19 +15,28 @@ if (!defined('R1A0M4A2R2')) {
  */
 class StsHome
 {
-    /** @var array $data Recebe os registros do banco de dados */
-    private array $data;
+        /** @var array $data Recebe os registros do banco de dados */
+		private array $data;
 
-    /**
-     * Criar o array com dados da página home
-     * @return array Retorna informações para página Home
-     */
+		/** @var object $connection Recebe a conexão com banco de dados */
+		private object $connection;
+	
+	
+		/**
+		 * Criar o array com dados da página home
+		 * @return array Retorna informações para página Home
+		 */
     public function index(): array
     {
         $this->data = [
             "title" => "Topo da pagina",
             "description" => "Descrição do serviço"
-        ];        
+        ]; 
+
+        $connection = new \Sts\Models\helper\StsConn();
+        $this->connection = $connection->connectDb();
+
+        var_dump($this->connection);		       
 
         return $this->data;
     }
