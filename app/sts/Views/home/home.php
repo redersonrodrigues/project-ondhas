@@ -8,6 +8,8 @@ if (!defined('R1A0M4A2R2')) {
 
 echo "View da página home do site<br>";
 
+var_dump($this->data);
+
 //Testar o acesso ao arquivo
 //http://localhost/project-ondhas/app/sts/Views/home/home.php
 

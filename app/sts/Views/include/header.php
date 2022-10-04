@@ -13,7 +13,7 @@ if (!defined('R1A0M4A2R2')) {
     <!-- Aceitar caracteres especiais -->
     <meta charset="UTF-8">
     <!-- Colocar o titulo na aba do navegador -->
-    <title>Celke</title>
+    <title>Ondhas</title>
 </head>
 
 <body>

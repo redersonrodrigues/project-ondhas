@@ -26,7 +26,12 @@ class Home
   */
     public function index()
     {
-		$this->data = [];
+		/**
+		 * instanciando a model Home do site pelo método index.
+		 */
+		$home = new \Sts\Models\StsHome();
+		$this->data = $home->index();
+	
         $loadView= new \Core\ConfigView("sts/Views/home/home", $this->data);
         $loadView->loadView();
     }
