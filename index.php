@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<?php
+//Constante que define que o usuário está acessando páginas internas através da página "index.php".
+define('R1A0M4A2R2', true);
 
-<head>
-	<!-- Aceitar caracteres especiais -->
-    <meta charset="UTF-8">
-    <title>Ondhas</title>
-</head>
-
-<body>
-    <?php
 	/** Carregar o composer */
     require './vendor/autoload.php';
 	/** Instanciar a classe ConfigController, responsável em tratar a URL */
     $url = new Core\ConfigController();
 	/** Instanciar o método para carregar a página/controller */
     $url->loadPage();
-    ?>
-</body>
 
-</html>

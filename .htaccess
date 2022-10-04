@@ -22,3 +22,7 @@ RewriteCond %{REQUEST_FILENAME} !-l
 # Exemplo: blog?situacao=1 será reescrita como index.php?url=blog&p=situacao
 # O sinalizador [L] faz mod_rewrite com que o processamento do conjunto de regras seja interrompido
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+
+
+# Bloquer para não listar os arquivos quando acessar o diretório
+Options -Indexes
