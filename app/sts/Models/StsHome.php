@@ -28,6 +28,7 @@ class StsHome
      */
     public function index(): array
     {
+        //$id = " 1 ' or = 3";
         /*$this->data = [
             "title" => "Topo da pagina",
             "description" => "Descrição do serviço"
@@ -48,10 +49,12 @@ class StsHome
         $this->data = $result_home_top->fetch();*/        
 
         $viewHome = new \Sts\Models\helper\StsRead();
-        $viewHome->exeRead("sts_homes_tops");
+        $viewHome->exeRead("sts_homes_tops", "WHERE id=:id LIMIT :limit", "id=1&limit=1");
         $this->data= $viewHome->getResult();
 
         var_dump($this->data);
+
+        //$this->data = [];
 
         return $this->data;
     }

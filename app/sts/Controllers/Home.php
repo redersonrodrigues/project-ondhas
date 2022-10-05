@@ -26,9 +26,7 @@ class Home
   */
     public function index()
     {
-		/**
-		 * instanciando a model Home do site pelo método index.
-		 */
+		/** instanciando a model Home do site pelo método index. */
 		$home = new \Sts\Models\StsHome();
 		$this->data = $home->index();
 	
