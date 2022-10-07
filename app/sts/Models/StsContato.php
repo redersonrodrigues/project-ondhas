@@ -22,8 +22,8 @@ class StsContato
     {
 		// Recebe os dados dos campos do formulário contato
         $this->data = $data;
-        var_dump($this->data);
+        //var_dump($this->data);
         $_SESSION['msg'] = "<p style='color: green;'>Salvar mensagem</p>";
-        return false;
+        return true;
     }
 }

@@ -1,0 +1,63 @@
+[04-Oct-2022 06:29:46 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class '\Sts\Controllers\FaviconIco' not found in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php:98
+Stack trace:
+#0 /home1/ramart14/estudo.ramartecnologia.com.br/index.php(17): Core\ConfigController->loadPage()
+#1 {main}
+  thrown in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php on line 98
+[04-Oct-2022 06:30:06 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class '\Sts\Controllers\Sobreempresa' not found in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php:98
+Stack trace:
+#0 /home1/ramart14/estudo.ramartecnologia.com.br/index.php(17): Core\ConfigController->loadPage()
+#1 {main}
+  thrown in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php on line 98
+[04-Oct-2022 06:30:06 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class '\Sts\Controllers\FaviconIco' not found in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php:98
+Stack trace:
+#0 /home1/ramart14/estudo.ramartecnologia.com.br/index.php(17): Core\ConfigController->loadPage()
+#1 {main}
+  thrown in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php on line 98
+[04-Oct-2022 06:30:17 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class '\Sts\Controllers\FaviconIco' not found in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php:98
+Stack trace:
+#0 /home1/ramart14/estudo.ramartecnologia.com.br/index.php(17): Core\ConfigController->loadPage()
+#1 {main}
+  thrown in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php on line 98
+[04-Oct-2022 06:30:40 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class '\Sts\Controllers\FaviconIco' not found in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php:98
+Stack trace:
+#0 /home1/ramart14/estudo.ramartecnologia.com.br/index.php(17): Core\ConfigController->loadPage()
+#1 {main}
+  thrown in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php on line 98
+[04-Oct-2022 08:06:48 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[04-Oct-2022 08:06:48 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class '\Sts\Controllers\FaviconIco' not found in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php:104
+Stack trace:
+#0 /home1/ramart14/estudo.ramartecnologia.com.br/index.php(10): Core\ConfigController->loadPage()
+#1 {main}
+  thrown in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php on line 104
+[04-Oct-2022 08:07:08 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/SobreEmpresa.php on line 20
+[04-Oct-2022 08:07:08 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class '\Sts\Controllers\FaviconIco' not found in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php:104
+Stack trace:
+#0 /home1/ramart14/estudo.ramartecnologia.com.br/index.php(10): Core\ConfigController->loadPage()
+#1 {main}
+  thrown in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php on line 104
+[04-Oct-2022 08:07:52 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Contato.php on line 19
+[04-Oct-2022 08:07:52 America/Fortaleza] PHP Fatal error:  Uncaught Error: Class '\Sts\Controllers\FaviconIco' not found in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php:104
+Stack trace:
+#0 /home1/ramart14/estudo.ramartecnologia.com.br/index.php(10): Core\ConfigController->loadPage()
+#1 {main}
+  thrown in /home1/ramart14/estudo.ramartecnologia.com.br/core/ConfigController.php on line 104
+[04-Oct-2022 21:51:57 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[04-Oct-2022 21:52:08 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[04-Oct-2022 21:52:13 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Contato.php on line 19
+[04-Oct-2022 21:52:31 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[04-Oct-2022 21:53:50 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[04-Oct-2022 21:53:52 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[04-Oct-2022 21:53:57 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[04-Oct-2022 21:55:05 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[04-Oct-2022 21:56:06 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Contato.php on line 19
+[04-Oct-2022 21:56:11 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Contato.php on line 19
+[04-Oct-2022 21:58:22 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[04-Oct-2022 22:06:12 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[04-Oct-2022 22:06:15 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[04-Oct-2022 22:07:40 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[05-Oct-2022 12:41:17 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[05-Oct-2022 12:41:23 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[05-Oct-2022 12:45:31 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[05-Oct-2022 12:45:31 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[05-Oct-2022 12:46:05 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
+[05-Oct-2022 12:46:15 America/Fortaleza] PHP Parse error:  syntax error, unexpected '|', expecting variable (T_VARIABLE) in /home1/ramart14/estudo.ramartecnologia.com.br/app/sts/Controllers/Home.php on line 20
