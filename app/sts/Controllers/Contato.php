@@ -32,11 +32,12 @@ class Contato
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
         if (!empty($this->dataForm['AddContMsg'])) {
+            unset($this->dataForm['AddContMsg']);
             $createContactMsg = new \Sts\Models\StsContato();
             if ($createContactMsg->create($this->dataForm)) {
-                echo "Cadastrado!<br>";
+                //echo "Cadastrado!<br>";
             } else {
-                echo "Não cadastrado!<br>";
+                //echo "Não cadastrado!<br>";
                 $this->data['form'] = $this->dataForm;
             }
         }
