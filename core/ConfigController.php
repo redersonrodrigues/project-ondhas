@@ -21,10 +21,15 @@ class ConfigController extends Config
     private string $url;
     /** @var array $urlArray Recebe a URL convertida para array */
     private array $urlArray;
+    /** @var string $urlController Recebe da URL o nome da controller */
     private string $urlController;
+    /** @var string $urlParamentro Recebe da URL o parâmetro */
     /*private string $urlParameter;*/
     private string $urlSlugController;
+    /** @var array $format Recebe o array de caracteres especiais que devem ser substituido */
     private array $format;
+    /** @var string $classe Recebe a classe */
+    private string $classLoad;
 
     /**
      * Recebe a URL do .htaccess
@@ -48,8 +53,7 @@ class ConfigController extends Config
         } else {
             $this->urlController = $this->slugController(CONTROLLER);
         }
-
-  }
+    }
 
     /**
      * Método privado não pode ser instanciado fora da classe
@@ -99,8 +103,28 @@ class ConfigController extends Config
      */
     public function loadPage(): void
     {
-        $classLoad = "\\Sts\\Controllers\\" . $this->urlController;
-        $classPage = new $classLoad();
-        $classPage->index();
+        $this->classLoad = "\\Sts\\Controllers\\" . $this->urlController;
+        if (class_exists($this->classLoad)) {
+            $this->loadClass();
+        } else {
+            $this->urlController = $this->slugController(CONTROLLERERRO);
+            $this->loadPage();
+        }
+    }
+
+    /**  
+     * Verificar se o método existe, existindo o método carrega a página;
+     * Não existindo o método, para o carregamento e apresenta mensagem de erro.
+     * 
+     * @return void
+     */
+    private function loadClass(): void
+    {
+        $classPage = new $this->classLoad();
+        if (method_exists($classPage, "index")) {
+            $classPage->index();
+        } else {
+            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
+        }
     }
 }
