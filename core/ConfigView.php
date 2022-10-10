@@ -35,6 +35,7 @@ class ConfigView
     {
         if (file_exists('app/' . $this->nameView . '.php')) {
             include 'app/sts/Views/include/header.php';
+			include 'app/sts/Views/include/menu.php';
             include 'app/' . $this->nameView . '.php';
             include 'app/sts/Views/include/footer.php';
         } else {

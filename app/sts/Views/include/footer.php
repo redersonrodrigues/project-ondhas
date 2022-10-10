@@ -5,6 +5,9 @@ if (!defined('R1A0M4A2R2')) {
     die("Erro: Página não encontrada!");
 }
 ?>
+<!-- incluir o JavaScript -->
+<script src="<?php echo URL; ?>app/sts/assets/js/custom.js"></script>
+
 </body>
 
 </html>

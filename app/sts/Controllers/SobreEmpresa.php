@@ -24,10 +24,15 @@ class SobreEmpresa
   * 
   * @return void
   */
-    public function index()
-    {
-		$this->data = [];
-        $loadView= new \Core\ConfigView("sts/Views/sobreEmpresa/sobreEmpresa", $this->data);
-        $loadView->loadView();
-    }
+  public function index()
+  {
+
+	  $aboutCompany = new \Sts\Models\StsSobreEmpresa();
+	  $this->data['about-company'] = $aboutCompany->index();
+
+	  //var_dump($this->data['about-company']);
+	  
+	  $loadView= new \Core\ConfigView("sts/Views/sobreEmpresa/sobreEmpresa", $this->data);
+	  $loadView->loadView();
+  }
 }
