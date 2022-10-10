@@ -15,21 +15,26 @@ if (!defined('R1A0M4A2R2')) {
  */
 class Home
 {
- /** @var array|string|null $dados Recebe os dados que devem ser enviados para VIEW */
- 
- private array|string|null $data;
+    
+    /** @var array|string|null $dados Recebe os dados que devem ser enviados para VIEW */
+    private array|string|null $data;
 
- /**
-  * Instanciar a classe responsável em carregar a View
-  * 
-  * @return void
-  */
-    public function index()
+    /**
+     * Instanciar a MODELS e receber o retorno
+     * Instantiar a classe responsável em carregar a View e enviar os dados para View.
+     * 
+     * @return void
+     */
+    public function index(): void
     {
-		/** instanciando a model Home do site pelo método index. */
-		$home = new \Sts\Models\StsHome();
-		$this->data = $home->index();
-	
+        $home = new \Sts\Models\StsHome();
+        $this->data['home'] = $home->index();  
+
+        $footer = new \Sts\Models\StsFooter();
+        $this->data['footer'] = $footer->index();  
+        
+        //var_dump($this->data);
+        
         $loadView= new \Core\ConfigView("sts/Views/home/home", $this->data);
         $loadView->loadView();
     }

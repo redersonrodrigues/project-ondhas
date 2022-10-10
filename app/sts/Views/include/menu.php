@@ -1,5 +1,23 @@
-<?php
+<?php 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+?>
 
-echo "<a href='" . URL . "'>Home</a><br>";
-echo "<a href='" . URL . "sobre-empresa'>Sobre Empresa</a><br>";
-echo "<a href='" . URL . "contato'>Contato</a><br>";
+<nav class="navbar">
+    <div class="max-width">
+        <div class="logo">
+            <a href="<?php echo URL; ?>">Ondhas</a>
+        </div>
+        <ul class="menu" id="menu-site">
+            <li><a href="<?php echo URL; ?>">Home</a></li>
+            <li><a href="<?php echo URL; ?>sobre-empresa">Sobre Empresa</a></li>
+            <li><a href="<?php echo URL; ?>contato">Contato</a></li>
+        </ul>
+        <div class="menu-btn" id="menu-btn">
+            <i class="fa-solid fa-bars" id="menu-icon"></i>
+        </div>
+    </div>
+</nav>
