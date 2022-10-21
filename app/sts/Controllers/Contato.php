@@ -22,12 +22,14 @@ class Contato
     private array|string|null $dataForm;
 
     /**
-     * Instanciar a classe responsável em carregar a View
+     * Instantiar a classe responsável em carregar a View
      * 
      * @return void
      */
     public function index(): void
     {
+
+
 
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
@@ -42,7 +44,14 @@ class Contato
             }
         }
 
+        $contentContact = new \Sts\Models\StsContentContact();
+        $this->data['content'] = $contentContact->index();
+
+        $footer = new \Sts\Models\StsFooter();
+        $this->data['footer'] = $footer->index();
+
         $loadView = new \Core\ConfigView("sts/Views/contato/contato", $this->data);
         $loadView->loadView();
     }
 }
+

@@ -37,10 +37,10 @@ class StsContato
         if ($createContactMsg->getResult()) {
             // Recuperar o último id inserido
             //var_dump($createContactMsg->getResult());
-            $_SESSION['msg'] = "<p style='color: green;'>Mensagem enviada com sucesso!</p>";
+            $_SESSION['msg'] = "<p class='alert-success'>Mensagem enviada com sucesso!</p>";
             return true;
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Mensagem não enviada com sucesso!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Mensagem não enviada com sucesso!</p>";
             return false;
         }
     }

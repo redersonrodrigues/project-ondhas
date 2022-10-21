@@ -15,24 +15,25 @@ if (!defined('R1A0M4A2R2')) {
  */
 class SobreEmpresa
 {
- /** @var array|string|null $dados Recebe os dados que devem ser enviados para VIEW */
- 
- private array|string|null $data;
 
- /**
-  * Instanciar a classe responsável em carregar a View
-  * 
-  * @return void
-  */
-  public function index()
-  {
+    /** @var array|string|null $dados Recebe os dados que devem ser enviados para VIEW */
+    private array|string|null $data;
 
-	  $aboutCompany = new \Sts\Models\StsSobreEmpresa();
-	  $this->data['about-company'] = $aboutCompany->index();
+    /**
+     * Instantiar a classe responsável em carregar a View
+     * 
+     * @return void
+     */
+    public function index()
+    {
 
-	  //var_dump($this->data['about-company']);
-	  
-	  $loadView= new \Core\ConfigView("sts/Views/sobreEmpresa/sobreEmpresa", $this->data);
-	  $loadView->loadView();
-  }
+        $aboutCompany = new \Sts\Models\StsSobreEmpresa();
+        $this->data['about-company'] = $aboutCompany->index();
+
+        $footer = new \Sts\Models\StsFooter();
+        $this->data['footer'] = $footer->index();
+        
+        $loadView= new \Core\ConfigView("sts/Views/sobreEmpresa/sobreEmpresa", $this->data);
+        $loadView->loadView();
+    }
 }

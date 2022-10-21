@@ -33,8 +33,6 @@ class Home
         $footer = new \Sts\Models\StsFooter();
         $this->data['footer'] = $footer->index();  
         
-        //var_dump($this->data);
-        
         $loadView= new \Core\ConfigView("sts/Views/home/home", $this->data);
         $loadView->loadView();
     }

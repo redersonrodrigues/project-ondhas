@@ -13,6 +13,7 @@ if (!defined('R1A0M4A2R2')) {
  *
  * @author Réderson rederson@ramartecnologia.com.br
  */
+
 class StsSobreEmpresa
 {
     /** @var array|null $data Recebe os registros do banco de dados */
@@ -26,7 +27,7 @@ class StsSobreEmpresa
     public function index(): array|null
     {    
         $viewSobreEmpresa = new \Sts\Models\helper\StsRead();
-        $viewSobreEmpresa->fullRead("SELECT id, title, description, image image 
+        $viewSobreEmpresa->fullRead("SELECT id, title, description, image 
                             FROM sts_abouts_companies 
                             WHERE sts_situation_id=:sts_situation_id
                             ORDER BY id DESC  
