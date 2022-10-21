@@ -1,14 +1,20 @@
 <?php
 
-namespace App\adms\Controllers;
+
 /**
 
- * Controller da página users
+ * Controller da página erro
 
  * @author Réderson <rederson@ramartecnologia.com.br>
 
  */
-class Users
+
+
+namespace App\adms\Controllers;
+
+
+
+class Erro
 
 {
 
@@ -16,7 +22,7 @@ class Users
 
     {
 
-        echo "Pagina listar usuarios<br>";
+        echo "Pagina de erro<br>";
 
     }
 

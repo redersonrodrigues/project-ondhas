@@ -1,12 +1,46 @@
 <?php
 
+
+
 namespace Core;
+
+
+
+/**
+
+ * Configurações básicas do site.
+
+ *
+
+ * @author Réderson <rederson@ramartecnologia.com.br>
+
+ */
+
+
 
 abstract class Config
 
 {
 
-    protected function configAdm()
+    /**
+
+     * Possui as constantes com as configurações.
+
+     * Configurações de endereço do projeto.
+
+     * Página principal do projeto.
+
+     * Credenciais de acesso ao banco de dados
+
+     * E-mail do administrador.
+
+     * 
+
+     * @return void
+
+     */
+
+    protected function configAdm(): void
 
     {
 

@@ -1,14 +1,18 @@
 <?php
 
+
+
 namespace App\adms\Controllers;
 /**
 
- * Controller da página users
+ * Controller da página visualizar usuários
 
  * @author Réderson <rederson@ramartecnologia.com.br>
 
  */
-class Users
+
+
+class ViewUsers
 
 {
 
@@ -16,7 +20,7 @@ class Users
 
     {
 
-        echo "Pagina listar usuarios<br>";
+        echo "Pagina visualizar usuario<br>";
 
     }
 
