@@ -1,0 +1,29 @@
+{
+
+    "description": "Projeto ADM ONDHAS",
+
+    "authors": [{
+
+        "name": "Rédeson Ataliba Rodrigues",
+
+        "email": "rederson@ramartecnologia.com.br"
+
+    }],
+
+    "autoload": {
+
+        "psr-4": {
+
+            "Core\\": "core",
+
+            "App\\": "app",
+
+            "Adms\\": "app/adms"
+
+        }
+
+    },
+
+    "require": {}
+
+}
