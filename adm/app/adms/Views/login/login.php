@@ -4,10 +4,17 @@ if (isset($this->data['form'])) {
 }
 
 //Criptografar a senha
-echo password_hash("123456a", PASSWORD_DEFAULT);
+//echo password_hash("123456a", PASSWORD_DEFAULT);
 ?>
 
 <h1>Área Restrita</h1>
+
+<?php
+if(isset($_SESSION['msg'])){
+    echo $_SESSION['msg'];
+    unset($_SESSION['msg']);
+}
+?>
 
 <form method="POST" action="">
     <?php
@@ -30,3 +37,6 @@ echo password_hash("123456a", PASSWORD_DEFAULT);
 
     <input type="submit" name="SendLogin" value="Acessar">
 </form>
+<br><br>
+Usuário: rederson@ondhas.com.br<br>
+Senha: 123456a
