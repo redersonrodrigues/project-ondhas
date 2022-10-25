@@ -4,7 +4,6 @@ namespace App\adms\Models;
 
 use App\adms\Models\helper\AdmsConn;
 use PDO;
-
 class AdmsLogin extends AdmsConn
 {
     private array|null $data;

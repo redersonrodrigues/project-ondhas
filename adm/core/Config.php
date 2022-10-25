@@ -1,19 +1,9 @@
 <?php
-
-
-
 namespace Core;
-
-
-
 /**
-
  * Configurações básicas do site.
-
  *
-
  * @author Réderson <rederson@ramartecnologia.com.br>
-
  */
 abstract class Config
 {

@@ -15,8 +15,9 @@ if(isset($_SESSION['msg'])){
     unset($_SESSION['msg']);
 }
 ?>
+<span id="msg"></span>
 
-<form method="POST" action="">
+<form method="POST" action="" id="form-login">
     <?php
     $user = "";
     if (isset($valorForm['user'])) {
@@ -35,8 +36,9 @@ if(isset($_SESSION['msg'])){
     <label>Senha: </label>
     <input type="password" name="password" id="password" placeholder="Digite a senha" value="<?php echo $password; ?>"><br><br>
 
-    <input type="submit" name="SendLogin" value="Acessar">
+    <button type="submit" name="SendLogin" value="Acessar">Acessar</button>
 </form>
-<br><br>
+<p><a href="<?php echo URLADM; ?>new-user/index">Cadastrar</a></p>
+
 Usuário: rederson@ondhas.com.br<br>
 Senha: 123456a

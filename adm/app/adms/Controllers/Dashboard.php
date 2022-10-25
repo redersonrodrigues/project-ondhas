@@ -3,11 +3,8 @@
 namespace App\adms\Controllers;
 
 /**
-
  * Controller da página Deshboard
-
  * @author Réderson <rederson@ramartecnologia.com.br>
-
  */
 class Dashboard
 {
