@@ -47,25 +47,20 @@ class AdmsSendEmail
         return $this->fromEmail;
     }
 
-    public function sendEmail(int $optionConfEmail): void
-    {       
+    public function sendEmail(array $data, int $optionConfEmail): void
+    {
         $this->optionConfEmail = $optionConfEmail;
-
-        $this->data['toEmail'] = "rederson@ramartecnologia.com.br";
-        $this->data['toName'] = "Réderson";
-        $this->data['subject'] = "Confirma e-mail";
-        $this->data['contentHtml'] = "Olá <b>Réderson</b><br><p>Cadastro realizado com sucesso!</p>";
-        $this->data['contentText'] = "Olá Réderson \n\nCadastro realizado com sucesso!";
+        $this->data = $data;
 
         $this->infoPhpMailer();
     }
 
-    private function infoPhpMailer() :void
+    private function infoPhpMailer(): void
     {
         $confEmail = new \App\adms\Models\helper\AdmsRead();
         $confEmail->fullRead("SELECT name, email, host, username, password, smtpsecure, port FROM adms_confs_emails WHERE id =:id LIMIT :limit", "id={$this->optionConfEmail}&limit=1");
         $this->resultBd = $confEmail->getResult();
-        if($this->resultBd){
+        if ($this->resultBd) {
             $this->dataInfoEmail['host'] = $this->resultBd[0]['host'];
             $this->dataInfoEmail['fromEmail'] = $this->resultBd[0]['email'];
             $this->fromEmail = $this->dataInfoEmail['fromEmail'];
@@ -76,7 +71,7 @@ class AdmsSendEmail
             $this->dataInfoEmail['port'] = $this->resultBd[0]['port'];
 
             $this->sendEmailPhpMailer();
-        }else{
+        } else {
             $this->result = false;
         }
     }
