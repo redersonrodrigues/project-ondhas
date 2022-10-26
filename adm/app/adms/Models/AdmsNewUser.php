@@ -15,6 +15,9 @@ class AdmsNewUser
     /** @var bool $result Recebe true quando executar o processo com sucesso e false quando houver erro */
     private bool $result;
 
+    /** @var string $fromEmail Recebe o e-mail do remetente */
+    private string $fromEmail;
+
     /**
      * @return bool Retorna true quando executar o processo com sucesso e false quando houver erro
      */
@@ -94,11 +97,29 @@ class AdmsNewUser
         $createUser->exeCreate("adms_users", $this->data);
 
         if ($createUser->getResult()) {
-            $_SESSION['msg'] = "<p style='color: green;'>Usuário cadastrado com sucesso!</p>";
-            $this->result = true;
+            //$_SESSION['msg'] = "<p style='color: green;'>Usuário cadastrado com sucesso!</p>";
+            //$this->result = true;
+            $this->sendEmail();
         } else {
             $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário não cadastrado com sucesso!</p>";
             $this->result = false;
         }
+    }
+
+    private function sendEmail():void
+    {
+        $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();
+        $sendEmail->sendEmail(2);
+
+        if($sendEmail->getResult()){
+            $_SESSION['msg'] = "<p style='color: green;'>Usuário cadastrado com sucesso. Acesse a sua caixa de e-mail para confimar o e-mail!</p>";
+            $this->result = true;
+        }else{
+            $this->fromEmail = $sendEmail->getFromEmail();
+            $_SESSION['msg'] = "<p style='color: #f00;'>Usuário cadastrado com sucesso. Houve erro ao enviar o e-mail de confirmação, entre em contado com {$this->fromEmail} para mais informações!</p>";
+            $this->result = true;
+        }
+
+        
     }
 }
