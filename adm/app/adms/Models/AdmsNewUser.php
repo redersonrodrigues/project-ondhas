@@ -2,6 +2,11 @@
 
 namespace App\adms\Models;
 
+/**
+ * Cadastrar o usuário no banco de dados
+ *
+ * @author Réderson
+ */
 class AdmsNewUser
 {
     /** @var array|null $data Recebe as informações do formulário */
@@ -57,7 +62,10 @@ class AdmsNewUser
         $valEmailSingle = new \App\adms\Models\helper\AdmsValEmailSingle();
         $valEmailSingle->validateEmailSingle($this->data['email']);
 
-        if (($valEmail->getResult()) and ($valEmailSingle->getResult())) {
+        $valPassword = new \App\adms\Models\helper\AdmsValPassword();
+        $valPassword->validatePassword($this->data['password']);
+
+        if (($valEmail->getResult()) and ($valEmailSingle->getResult()) and ($valPassword->getResult())) {
             $this->add();
         } else {
             $this->result = false;
