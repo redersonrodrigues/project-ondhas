@@ -49,6 +49,8 @@ class AdmsNewUser
     /** 
      * Instanciar o helper "AdmsValEmail" para verificar se o e-mail válido
      * Instanciar o helper "AdmsValEmailSingle" para verificar se o e-mail não está cadastrado no banco de dados, não permitido cadastro com e-mail duplicado
+     * Instanciar o helper "validatePassword" para validar a senha
+     * Instanciar o helper "validateUserSingleLogin" para verificar se o usuário não está cadastrado no banco de dados, não permitido cadastro com usuário duplicado
      * Instanciar o método "add" quando não houver nenhum erro de preenchimento 
      * Retorna FALSE quando houve algum erro
      * 
@@ -65,7 +67,10 @@ class AdmsNewUser
         $valPassword = new \App\adms\Models\helper\AdmsValPassword();
         $valPassword->validatePassword($this->data['password']);
 
-        if (($valEmail->getResult()) and ($valEmailSingle->getResult()) and ($valPassword->getResult())) {
+        $valUserSingleLogin = new \App\adms\Models\helper\AdmsValUserSingleLogin();
+        $valUserSingleLogin->validateUserSingleLogin($this->data['email']);
+
+        if (($valEmail->getResult()) and ($valEmailSingle->getResult()) and ($valPassword->getResult()) and ($valUserSingleLogin->getResult())) {
             $this->add();
         } else {
             $this->result = false;
