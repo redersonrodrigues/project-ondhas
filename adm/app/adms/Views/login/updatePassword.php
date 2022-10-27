@@ -14,7 +14,7 @@ if(isset($_SESSION['msg'])){
 ?>
 <span id="msg"></span>
 
-<form method="POST" action="" id="form-login">    
+<form method="POST" action="" id="form-update-pass">    
 
     <?php
     $password = "";
@@ -23,7 +23,8 @@ if(isset($_SESSION['msg'])){
     }
     ?>
     <label>Senha: </label>
-    <input type="password" name="password" id="password" placeholder="Digite a nova senha" value="<?php echo $password; ?>"><br><br>
+    <input type="password" name="password" id="password" placeholder="Digite a nova senha"  onkeyup="passwordStrength()" autocomplete="on" value="<?php echo $password; ?>" required>
+    <span id="msgViewStrength"><br><br></span>
 
     <button type="submit" name="SendUpPass" value="Salvar">Salvar</button>
 </form>
