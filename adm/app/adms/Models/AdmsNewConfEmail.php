@@ -43,7 +43,17 @@ class AdmsNewConfEmail extends AdmsConn
     public function newConfEmail(array $data = null): void
     {
         $this->data = $data;
+        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
+        $valEmptyField->valField($this->data);
+        if($valEmptyField->getResult()){
+            $this->valUser();
+        }else{
+            $this->result = false;
+        }
+    }
 
+    private function valUser(): void
+    {
         $newConfEmail = new \App\adms\Models\helper\AdmsRead();
         $newConfEmail->fullRead(
             "SELECT id, name, email, conf_email 
@@ -89,23 +99,23 @@ class AdmsNewConfEmail extends AdmsConn
         }
     }
 
-    private function sendEmail():void
+    private function sendEmail(): void
     {
         $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();
         $this->emailHTML();
         $this->emailText();
         $sendEmail->sendEmail($this->emailData, 2);
-        if($sendEmail->getResult()){
+        if ($sendEmail->getResult()) {
             $_SESSION['msg'] = "<p style='color: green;'>Novo link enviado com sucesso. Acesse a sua caixa de e-mail para confimar o e-mail!</p>";
             $this->result = true;
-        }else{
+        } else {
             $this->fromEmail = $sendEmail->getFromEmail();
             $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Link não enviado, tente novamente ou entre em contato com o e-mail {$this->fromEmail}!</p>";
             $this->result = false;
         }
     }
 
-    private function emailHTML():void
+    private function emailHTML(): void
     {
         $name = explode(" ", $this->resultBd[0]['name']);
         $this->firstName = $name[0];
@@ -122,7 +132,7 @@ class AdmsNewConfEmail extends AdmsConn
         $this->emailData['contentHtml'] .= "Esta mensagem foi enviada a você pela empresa XXX.<br>Você está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.<br><br>";
     }
 
-    private function emailText():void
+    private function emailText(): void
     {
         $this->emailData['contentText'] = "Prezado(a) {$this->firstName}\n\n";
         $this->emailData['contentText'] .= "Agradecemos a sua solicitação de cadastro em nosso site!\n\n";
