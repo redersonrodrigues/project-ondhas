@@ -30,6 +30,8 @@ class AdmsNewConfEmail extends AdmsConn
 
     private array $dataSave;
 
+    private string $url;
+
     /**
      * @return bool Retorna true quando executar o processo com sucesso e false quando houver erro
      */
