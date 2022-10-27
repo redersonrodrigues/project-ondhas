@@ -8,7 +8,7 @@ use PDO;
 /**
  * Confirmar o cadastro do usuário, alterando a situação no banco de dados
  *
- * @author Rederson
+ * @author Réderson
  */
 class AdmsConfEmail extends AdmsConn
 {
@@ -21,6 +21,8 @@ class AdmsConfEmail extends AdmsConn
 
     /** @var array|null $resultBd Recebe os registros do banco de dados */
     private array|null $resultBd;
+
+    private array $dataSave;
 
     /**
      * @return bool Retorna true quando executar o processo com sucesso e false quando houver erro
@@ -59,17 +61,28 @@ class AdmsConfEmail extends AdmsConn
 
     private function updateSitUser(): void
     {
-        $conf_email = null;
-        $adms_sits_user_id = 1;
+        $this->dataSave['conf_email'] = null;
+        $this->dataSave['adms_sits_user_id'] = 1;
 
-        $query_ativar_user = "UPDATE adms_users 
+        $upConfEmail = new \App\adms\Models\helper\AdmsUpdate();
+        $upConfEmail->exeUpdate("adms_users", $this->dataSave, "WHERE id=:id", "id={$this->resultBd[0]['id']}");
+
+        if ($upConfEmail->getResult()) {
+            $_SESSION['msg'] = "<p style='color: green;'>E-mail ativado com sucesso!</p>";
+            $this->result = true;
+        } else {
+            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Link inválido!</p>";
+            $this->result = false;
+        }
+
+        /*$query_activate_user = "UPDATE adms_users 
                             SET conf_email=:conf_email, 
                             adms_sits_user_id=:adms_sits_user_id,
                             modified = NOW() 
                             WHERE id=:id 
                             LIMIT 1";
 
-        $activate_email = $this->connectDb()->prepare($query_ativar_user);
+        $activate_email = $this->connectDb()->prepare($query_activate_user);
         $activate_email->bindParam(':conf_email', $conf_email);
         $activate_email->bindParam(':adms_sits_user_id', $adms_sits_user_id);
         $activate_email->bindParam(':id', $this->resultBd[0]['id']);
@@ -81,6 +94,6 @@ class AdmsConfEmail extends AdmsConn
         } else {
             $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Link inválido!</p>";
             $this->result = false;
-        }
+        }*/
     }
 }
