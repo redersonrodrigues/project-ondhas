@@ -19,6 +19,8 @@ class Login
 
     /**
      * Instantiar a classe responsável em carregar a View e enviar os dados para View.
+     * Quando o usuário clicar no botão "acessar" do formulário da página de login. Acessa o IF e instância a classe "AdmsLogin" responsável em validar o usuário e a senha.
+     * Dados do login corretos, redireciona para a página dashboard.
      * 
      * @return void
      */
@@ -38,9 +40,7 @@ class Login
             }            
         }
 
-        //$this->data = null;
-
         $loadView = new \Core\ConfigView("adms/Views/login/login", $this->data);
-        $loadView->loadView();
+        $loadView->loadViewLogin();
     }
 }

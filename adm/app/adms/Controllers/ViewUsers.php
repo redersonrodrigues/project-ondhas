@@ -10,8 +10,6 @@ namespace App\adms\Controllers;
  * @author Réderson <rederson@ramartecnologia.com.br>
 
  */
-
-
 class ViewUsers
 {
     /** @var array|string|null $data Recebe os dados que devem ser enviados para VIEW */
@@ -24,8 +22,6 @@ class ViewUsers
      */
     public function index(): void
     {
-        echo "Pagina visualizar usuario<br>";
-
         $this->data = [];
 
         $loadView = new \Core\ConfigView("adms/Views/users/viewUser", $this->data);
