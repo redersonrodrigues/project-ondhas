@@ -62,6 +62,7 @@ class AdmsConfEmail extends AdmsConn
     {
         $this->dataSave['conf_email'] = null;
         $this->dataSave['adms_sits_user_id'] = 1;
+        $this->dataSave['modified'] = date("Y-m-d H:i:s");
 
         $upConfEmail = new \App\adms\Models\helper\AdmsUpdate();
         $upConfEmail->exeUpdate("adms_users", $this->dataSave, "WHERE id=:id", "id={$this->resultBd[0]['id']}");
