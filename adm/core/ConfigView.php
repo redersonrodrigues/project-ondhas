@@ -6,7 +6,6 @@ namespace Core;
  * 
  * @author Réderson <rederson@ramartecnologia.com.br>
  */
-
 class ConfigView
 {
     
