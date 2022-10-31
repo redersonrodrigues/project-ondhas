@@ -33,7 +33,7 @@ if (isset($_SESSION['msg'])) {
     ?>
     <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
     
-    <label>Imagem:<span style="color: #f00;">*</span> </label>
+    <label>Imagem:<span style="color: #f00;">*</span> 300x300 </label>
     <input type="file" name="new_image" id="new_image" ><br><br>
 
     <span style="color: #f00;">* Campo Obrigatório</span><br><br>
