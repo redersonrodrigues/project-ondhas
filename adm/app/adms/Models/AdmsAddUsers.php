@@ -15,6 +15,8 @@ class AdmsAddUsers
     /** @var bool $result Recebe true quando executar o processo com sucesso e false quando houver erro */
     private bool $result;
 
+    private array $listRegistryAdd;
+
     /**
      * @return bool Retorna true quando executar o processo com sucesso e false quando houver erro
      */
@@ -100,5 +102,16 @@ class AdmsAddUsers
             $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário não cadastrado com sucesso!</p>";
             $this->result = false;
         }
+    }
+
+    public function listSelect(): array
+    {
+        $list = new \App\adms\Models\helper\AdmsRead();
+        $list->fullRead("SELECT id id_sit, name name_sit FROM adms_sits_users ORDER BY name ASC");
+        $registry['sit'] = $list->getResult();
+
+        $this->listRegistryAdd = ['sit' => $registry['sit']];
+
+        return $this->listRegistryAdd;
     }
 }

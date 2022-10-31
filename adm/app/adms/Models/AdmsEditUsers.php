@@ -47,7 +47,7 @@ class AdmsEditUsers
 
         $viewUser = new \App\adms\Models\helper\AdmsRead();
         $viewUser->fullRead(
-            "SELECT id, name, nickname, email, user
+            "SELECT id, name, nickname, email, user, adms_sits_user_id
                             FROM adms_users
                             WHERE id=:id
                             LIMIT :limit",
@@ -123,4 +123,16 @@ class AdmsEditUsers
             $this->result = false;
         }
     }
+
+    public function listSelect(): array
+    {
+        $list = new \App\adms\Models\helper\AdmsRead();
+        $list->fullRead("SELECT id id_sit, name name_sit FROM adms_sits_users ORDER BY name ASC");
+        $registry['sit'] = $list->getResult();
+
+        $this->listRegistryAdd = ['sit' => $registry['sit']];
+
+        return $this->listRegistryAdd;
+    }
+
 }

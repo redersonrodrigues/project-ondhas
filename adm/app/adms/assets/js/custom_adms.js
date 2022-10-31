@@ -197,6 +197,15 @@ if (formAddUser) {
         }
 
         //Receber o valor do campo
+        var adms_sits_user_id = document.querySelector("#adms_sits_user_id").value;
+        // Verificar se o campo esta vazio
+        if (adms_sits_user_id === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p style='color: #f00;'>Erro: Necessário preencher o campo situação!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
         var password = document.querySelector("#password").value;
         // Verificar se o campo esta vazio
         if (password === "") {
@@ -252,6 +261,15 @@ if (formEditUser) {
         if (user === "") {
             e.preventDefault();
             document.getElementById("msg").innerHTML = "<p style='color: #f00;'>Erro: Necessário preencher o campo usuário!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var adms_sits_user_id = document.querySelector("#adms_sits_user_id").value;
+        // Verificar se o campo esta vazio
+        if (adms_sits_user_id === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p style='color: #f00;'>Erro: Necessário preencher o campo situação!</p>";
             return;
         }
     });

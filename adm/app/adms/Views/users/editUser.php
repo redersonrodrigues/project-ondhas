@@ -69,6 +69,21 @@ if (isset($_SESSION['msg'])) {
     <label>Usuário:<span style="color: #f00;">*</span> </label>
     <input type="text" name="user" id="user" placeholder="Digite o usuário para acessar o administrativo" value="<?php echo $user; ?>" required><br><br>
 
+    <label>Situação:<span style="color: #f00;">*</span> </label>
+    <select name="adms_sits_user_id" id="adms_sits_user_id">
+        <option value="">Selecione</option>
+        <?php
+        foreach($this->data['select']['sit'] as $sit){
+            extract($sit);
+            if((isset($valorForm['adms_sits_user_id'])) and ($valorForm['adms_sits_user_id'] == $id_sit)){
+                echo "<option value='$id_sit' selected>$name_sit</option>";
+            }else{
+                echo "<option value='$id_sit'>$name_sit</option>";
+            }
+        }
+        ?>
+    </select><br><br>
+
     <span style="color: #f00;">* Campo Obrigatório</span><br><br>
 
     <button type="submit" name="SendEditUser" value="Salvar">Salvar</button>
