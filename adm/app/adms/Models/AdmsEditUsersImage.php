@@ -33,6 +33,9 @@ class AdmsEditUsersImage
     /** @var string $delImg Recebe o endereço da imagem que deve ser excluida */
     private string $delImg;
 
+    /** @var string $nameImg Recebe o slug/nome da imagem */
+    private string $nameImg;
+
     /**
      * @return bool Retorna true quando executar o processo com sucesso e false quando houver erro
      */
@@ -115,13 +118,16 @@ class AdmsEditUsersImage
 
     private function upload(): void
     {
+        $slugImg = new \App\adms\Models\helper\AdmsSlug();
+        $this->nameImg = $slugImg->slug($this->dataImagem['name']);
+
         $this->directory = "app/adms/assets/image/users/" . $this->data['id'] . "/";
 
         if ((!file_exists($this->directory)) and (!is_dir($this->directory))) {
             mkdir($this->directory, 0755);
         }
 
-        if (move_uploaded_file($this->dataImagem['tmp_name'], $this->directory . $this->dataImagem['name'])) {
+        if (move_uploaded_file($this->dataImagem['tmp_name'], $this->directory . $this->nameImg)) {
             $this->edit();
         } else {
             $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Upload da imagem não realizado com sucesso!</p>";
@@ -131,7 +137,7 @@ class AdmsEditUsersImage
 
     private function edit(): void
     {
-        $this->data['image'] = $this->dataImagem['name'];
+        $this->data['image'] = $this->nameImg;
         $this->data['modified'] = date("Y-m-d H:i:s");
 
         $upUser = new \App\adms\Models\helper\AdmsUpdate();
@@ -147,7 +153,7 @@ class AdmsEditUsersImage
 
     private function deleteImage(): void
     {
-        if (((!empty($this->resultBd[0]['image'])) or ($this->resultBd[0]['image'] != null)) and ($this->resultBd[0]['image'] != $this->data['image'])) {
+        if (((!empty($this->resultBd[0]['image'])) or ($this->resultBd[0]['image'] != null)) and ($this->resultBd[0]['image'] != $this->nameImg)) {
             $this->delImg = "app/adms/assets/image/users/" . $this->data['id'] . "/" . $this->resultBd[0]['image'];
             if (file_exists($this->delImg)) {
                 unlink($this->delImg);
