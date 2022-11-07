@@ -1,5 +1,10 @@
 <?php
  namespace App\adms\Controllers;
+ // Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Controller da página erro
  * @author Réderson <rederson@ramartecnologia.com.br>
@@ -11,7 +16,7 @@ class Erro
     private array|string|null $data;
 
     /**
-     * Instantiar a classe responsável em carregar a View e enviar os dados para View.
+     * Instanciar a classe responsável em carregar a View e enviar os dados para View.
      * 
      * @return void
      */

@@ -2,6 +2,12 @@
 
 namespace App\adms\Models\helper;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 /**
  * Classe genérica para validar a extensão da imagem
  *
@@ -46,7 +52,7 @@ class AdmsValExtImg
                 $this->result = true;
                 break;
             default:
-                $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Necessário selecionar imagem JPEG ou PNG!</p>";
+                $_SESSION['msg'] = "<p class='alert-danger'>Erro: Necessário selecionar imagem JPEG ou PNG!</p>";
                 $this->result = false;
         }
     }

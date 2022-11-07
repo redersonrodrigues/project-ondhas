@@ -2,6 +2,12 @@
 
 namespace App\adms\Models;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 /**
  * Apagar o usuário no banco de dados
  *
@@ -33,6 +39,12 @@ class AdmsDeleteUsers
         return $this->result;
     }
 
+    /**
+     * Metodo recebe como parametro o ID que será usado para excluir o registro da tabela adms_users
+     * Chama a função viewUser para verificar se o usuário esta cadastrado no sistema e na sequencia chama a função deleteImg para apagar a imagem do usuário
+     * @param integer $id
+     * @return void
+     */
     public function deleteUser(int $id): void
     {
         $this->id = (int) $id;
@@ -43,10 +55,10 @@ class AdmsDeleteUsers
     
             if ($deleteUser->getResult()) {
                 $this->deleteImg();
-                $_SESSION['msg'] = "<p style='color: green;'>Usuário apagado com sucesso!</p>";
+                $_SESSION['msg'] = "<p class='alert-success'>Usuário apagado com sucesso!</p>";
                 $this->result = true;
             } else {
-                $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário não apagado com sucesso!</p>";
+                $_SESSION['msg'] = "<p class='alert-danger'>Erro: Usuário não apagado com sucesso!</p>";
                 $this->result = false;
             }
         }else{
@@ -55,6 +67,11 @@ class AdmsDeleteUsers
         
     }
 
+    /**
+     * Metodo faz a pesquisa para verificar se o usuário esta cadastrado no sistema, o resultado é enviado para a função deleteUser
+     *
+     * @return boolean
+     */
     private function viewUser(): bool
     {
 
@@ -71,11 +88,16 @@ class AdmsDeleteUsers
         if ($this->resultBd) {
             return true;
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00'>Erro: Usuário não encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Usuário não encontrado!</p>";
             return false;
         }
     }
 
+    /**
+     * Metodo usado para apagar a imagem e o diretorio do usuário do servidor
+     *
+     * @return void
+     */
     private function deleteImg(): void
     {
         if((!empty($this->resultBd[0]['image'])) or ($this->resultBd[0]['image'] != null)){

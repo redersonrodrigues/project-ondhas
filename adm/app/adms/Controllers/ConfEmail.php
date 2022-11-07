@@ -1,7 +1,11 @@
 <?php
 
 namespace App\adms\Controllers;
-
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Controller da página Confirmar Email
  * @author Réderson <rederson@ramartecnologia.com.br>
@@ -13,7 +17,10 @@ class ConfEmail
     private string|null $key;
 
     /**
-     * Instantiar a classe responsável em carregar a View e enviar os dados para View.
+     * Método confirmar e-mail
+     * Receber da URL a chave para confirmar o e-mail
+     * Se existir a chave instancia o método para validar a chave e confirmar o e-mail
+     * Senão acessa  o ELSE e redireciona o usuário para a página de login
      * 
      * @return void
      */
@@ -24,12 +31,19 @@ class ConfEmail
         if (!empty($this->key)) {
             $this->valKey();
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Necessário confirmar o e-mail, solicite novo link <a href='".URLADM."new-conf-email/index'>Clique aqui</a>!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Necessário confirmar o e-mail, solicite novo link <a href='".URLADM."new-conf-email/index'>Clique aqui</a>!</p>";
             $urlRedirect = URLADM . "login/index";
             header("Location: $urlRedirect");
         }
     }
 
+    /**
+     * Instancia a MODELS responsável e confirmar o e-mail
+     * Se o e-mail for confirmado redireciona para página de login
+     * Senão acessa o ELSE e redireciona para página de login
+     * 
+     * @return void
+     */
     private function valKey(): void
     {
         $confEmail = new \App\adms\Models\AdmsConfEmail();

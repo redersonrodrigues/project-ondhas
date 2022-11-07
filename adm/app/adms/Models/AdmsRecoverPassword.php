@@ -2,6 +2,11 @@
 
 namespace App\adms\Models;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Solicitar novo link para cadastrar nova senha
  *
@@ -38,6 +43,12 @@ class AdmsRecoverPassword
     }
 
     /** 
+     * Recebe os valores do formulário.
+     * Instancia o helper "AdmsValEmptyField" para verificar se todos os campos estão preenchidos 
+     * Chama o metodo valUser para validar o usuário
+     * Retorna FALSE quando algum campo está vazio
+     * 
+     * @param array $data Recebe as informações do formulário
      * 
      * @return void
      */
@@ -53,6 +64,11 @@ class AdmsRecoverPassword
         }
     }
 
+    /**
+     * Metodo faz a pesquisa no banco de dados para verificar se o usuário esta cadastrado no banco de dados e validar o e-mail
+     * Chama o metodo valConfEmail para salvar a recuperação de senha caso não tenha nenhuma cadastrada
+     * @return void
+     */
     private function valUser(): void
     {
         $newConfEmail = new \App\adms\Models\helper\AdmsRead();
@@ -60,17 +76,22 @@ class AdmsRecoverPassword
                                     FROM adms_users
                                     WHERE email=:email
                                     LIMIT :limit",
-                                    "email={$this->data['email']}&limit=1"
-        );
+                                    "email={$this->data['email']}&limit=1");
         $this->resultBd = $newConfEmail->getResult();
         if ($this->resultBd) {
             $this->valConfEmail();
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: E-mail não cadastrado!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: E-mail não cadastrado!</p>";
             $this->result = false;
         }
     }
 
+    /**
+     * Metodo salva a recuperação de senha no banco de dados caso não tenha nenhuma cadastrada.
+     * Chama o metodo sendEmail para enviar o e-mail para o usuário.
+     * Retorna FALSE se tiver um erro.
+     * @return void
+     */
     private function valConfEmail(): void
     {
             $this->dataSave['recover_password'] = password_hash(date("Y-m-d H:i:s") . $this->resultBd[0]['id'], PASSWORD_DEFAULT);            
@@ -83,12 +104,18 @@ class AdmsRecoverPassword
                 $this->resultBd[0]['recover_password'] = $this->dataSave['recover_password'];
                 $this->sendEmail();
             }else{
-                $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Link não enviado, tente novamente!</p>";
+                $_SESSION['msg'] = "<p class='alert-danger'>Erro: Link não enviado, tente novamente!</p>";
                 $this->result = false;
             }
 
     }
 
+    /**
+     * Metodo instancia o helper AdmsSendEmail para enviar o email para o usuario recuperar a senha
+     * Chama o metodo emailHTML para enviar o corpo do e-mail com tags HTML
+     * Chama o metodo emailText para enviar o corpo do e-mail apenas com o texto
+     * @return void
+     */
     private function sendEmail(): void
     {
         $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();
@@ -96,15 +123,19 @@ class AdmsRecoverPassword
         $this->emailText();
         $sendEmail->sendEmail($this->emailData, 2);
         if ($sendEmail->getResult()) {
-            $_SESSION['msg'] = "<p style='color: green;'>Enviado e-mail com instruções para recuperar a senha. Acesse a sua caixa de e-mail para recuperar a senha!</p>";
+            $_SESSION['msg'] = "<p class='alert-success'>Enviado e-mail com instruções para recuperar a senha. Acesse a sua caixa de e-mail para recuperar a senha!</p>";
             $this->result = true;
         } else {
             $this->fromEmail = $sendEmail->getFromEmail();
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: E-mail com as intruções para recuperar a senha não enviado, tente novamente ou entre em contato com o e-mail {$this->fromEmail}!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: E-mail com as intruções para recuperar a senha não enviado, tente novamente ou entre em contato com o e-mail {$this->fromEmail}!</p>";
             $this->result = false;
         }
     }
 
+    /**
+     * Metodo envia o corpo do e-mail com tags HTML e o link para o usuário recuperar a senha
+     * @return void
+     */
     private function emailHTML(): void
     {
         $name = explode(" ", $this->resultBd[0]['name']);
@@ -122,6 +153,10 @@ class AdmsRecoverPassword
         $this->emailData['contentHtml'] .= "Se você não solicitou essa alteração, nenhuma ação é necessária. Sua senha permanecerá a mesma até que você ative este código.<br><br>";
     }
 
+    /**
+     * Metodo envia o corpo do e-mail apenas com o texto e o link para o usuário recuperar a senha.
+     * @return void
+     */
     private function emailText(): void
     {
         $this->emailData['contentText'] = "Prezado(a) {$this->firstName}\n\n";

@@ -2,6 +2,11 @@
 
 namespace App\adms\Models\helper;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Classe genérica para validar a senha
  *
@@ -23,16 +28,25 @@ class AdmsValPassword
         return $this->result;
     }
 
+    /** 
+     * Verificar se a senha possui aspas simples " ' ", retorna erro.
+     * Verificar se a senha possui espaço em branco " ", retorna erro.
+     * Instancia o método para validar a quantidade de caracteres a senha possui
+     * 
+     * @param string $password Recebe a senha que deve ser validada.
+     * 
+     * @return void
+     */
     public function validatePassword(string $password): void
     {
         $this->password = $password;
 
         if (stristr($this->password, "'")) {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Caracter ( ' ) utilizado na senha inválido!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Caracter ( ' ) utilizado na senha inválido!</p>";
             $this->result = false;
         } else {
             if (stristr($this->password, " ")) {
-                $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Proibido utilizar espaço em branco no campo senha!</p>";
+                $_SESSION['msg'] = "<p class='alert-danger'>Erro: Proibido utilizar espaço em branco no campo senha!</p>";
                 $this->result = false;
             } else {
                 $this->valExtensPassword();
@@ -40,22 +54,33 @@ class AdmsValPassword
         }
     }
 
+    /** 
+     * Verificar se a senha possui menos de 6 caracteres, retorna erro.
+     * Instancia o método para validar os caracteres que a senha possui
+     * 
+     * @return void
+     */
     private function valExtensPassword(): void
     {
         if (strlen($this->password) < 6) {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: A senha deve ter no mínimo 6 caracteres!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: A senha deve ter no mínimo 6 caracteres!</p>";
             $this->result = false;
         } else {
             $this->valValuePassword();
         }
     }
 
+    /** 
+     * Verificar se a senha possui letra e números na senha.
+     * 
+     * @return void
+     */
     private function valValuePassword(): void
     {
         if(preg_match('/^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9-@#$%;*]{6,}$/', $this->password)){
             $this->result = true;
         }else{
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: A senha deve ter letras e números!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: A senha deve ter letras e números!</p>";
             $this->result = false;
         }
     }

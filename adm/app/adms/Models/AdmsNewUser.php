@@ -2,6 +2,12 @@
 
 namespace App\adms\Models;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 /**
  * Cadastrar o usuário no banco de dados
  *
@@ -111,11 +117,17 @@ class AdmsNewUser
             //$this->result = true;
             $this->sendEmail();
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário não cadastrado com sucesso!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Usuário não cadastrado com sucesso!</p>";
             $this->result = false;
         }
     }
 
+    /**
+     * Metodo instancia o helper AdmsSendEmail para enviar o email para o usuario
+     * Chama o metodo contentEmailHtml para enviar o corpo do e-mail com tags HTML
+     * Chama o metodo contentEmailText para enviar o corpo do e-mail apenas com o texto
+     * @return void
+     */
     private function sendEmail(): void
     {
 
@@ -126,15 +138,19 @@ class AdmsNewUser
         $sendEmail->sendEmail($this->emailData, 2);
 
         if ($sendEmail->getResult()) {
-            $_SESSION['msg'] = "<p style='color: green;'>Usuário cadastrado com sucesso. Acesse a sua caixa de e-mail para confimar o e-mail!</p>";
+            $_SESSION['msg'] = "<p class='alert-success'>Usuário cadastrado com sucesso. Acesse a sua caixa de e-mail para confimar o e-mail!</p>";
             $this->result = true;
         } else {
             $this->fromEmail = $sendEmail->getFromEmail();
-            $_SESSION['msg'] = "<p style='color: #f00;'>Usuário cadastrado com sucesso. Houve erro ao enviar o e-mail de confirmação, entre em contado com {$this->fromEmail} para mais informações!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Usuário cadastrado com sucesso. Houve erro ao enviar o e-mail de confirmação, entre em contado com {$this->fromEmail} para mais informações!</p>";
             $this->result = true;
         }
     }
 
+    /**
+     * Metodo envia o corpo do e-mail com tags HTML e o link para o usuário confirmar o cadastro
+     * @return void
+     */
     private function contentEmailHtml(): void
     {
         $name = explode(" ", $this->data['name']);
@@ -152,6 +168,10 @@ class AdmsNewUser
         $this->emailData['contentHtml'] .= "Esta mensagem foi enviada a você pela empresa XXX.<br>Você está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.<br><br>";
     }
 
+    /**
+     * Metodo envia o corpo do e-mail apenas com o texto e o link para o usuário confirmar o cadastro.
+     * @return void
+     */
     private function contentEmailText(): void
     {
         $this->emailData['contentText'] = "Prezado(a) {$this->firstName}\n\n";

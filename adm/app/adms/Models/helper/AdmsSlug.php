@@ -1,6 +1,11 @@
 <?php
 
 namespace App\adms\Models\helper;
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 
 /**
  * Classe genérica para converter o SLUG
@@ -15,7 +20,12 @@ class AdmsSlug
     /** @var array $format Recebe o array de caracteres especiais que devem ser substituido */
     private array $format;
 
-    
+    /**
+     * Metodo faz a conversão da informação em SLUG
+     *
+     * @param string $text
+     * @return string|null
+     */    
     public function slug(string $text): string|null
     {
         $this->text = $text;

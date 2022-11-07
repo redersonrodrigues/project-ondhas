@@ -2,10 +2,16 @@
 
 namespace App\adms\Models\helper;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 /**
  * Classe genérica para validar o e-mail
  *
- * @author Réderson / rederson@ramartecnologia.com.br
+ * @author Réderson
  */
 class AdmsValEmail
 {
@@ -39,7 +45,7 @@ class AdmsValEmail
         if(filter_var($this->email, FILTER_VALIDATE_EMAIL)){
             $this->result = true;
         }else{
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: E-mail inválido!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: E-mail inválido!</p>";
             $this->result = false;
         }
     }

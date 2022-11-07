@@ -1,31 +1,56 @@
 <?php
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 if (isset($this->data['form'])) {
     $valorForm = $this->data['form'];
 }
+
 ?>
 
-<h1>Recuperar Senha</h1>
+<div class="container-login">
+    <div class="wrapper-login">
 
-<?php
-if (isset($_SESSION['msg'])) {
-    echo $_SESSION['msg'];
-    unset($_SESSION['msg']);
-}
-?>
-<span id="msg"></span>
+        <div class="title">
+            <span>Recuperar Senha</span>
+        </div>
 
-<form method="POST" action="" id="form-recover-pass">
+        <div class="msg-alert">
+            <?php
+            if (isset($_SESSION['msg'])) {
+                echo "<span id='msg'> " . $_SESSION['msg'] . "</span>";
+                unset($_SESSION['msg']);
+            } else {
+                echo "<span id='msg'></span>";
+            }
+            ?>
 
-    <?php
-    $email = "";
-    if (isset($valorForm['email'])) {
-        $email = $valorForm['email'];
-    }
-    ?>
-    <label>E-mail: </label>
-    <input type="email" name="email" id="email" placeholder="Digite o seu e-mail" value="<?php echo $email; ?>" required><br><br>
+        </div>
 
-    <button type="submit" name="SendRecoverPass" value="Recuperar">Recuperar</button>
-</form>
+        <form method="POST" action="" id="form-recover-pass" class="form-login">
 
-<p><a href="<?php echo URLADM; ?>">Clique aqui</a> para acessar</p>
+        <?php
+            $email = "";
+            if (isset($valorForm['email'])) {
+                $email = $valorForm['email'];
+            }
+            ?>
+            <div class="row">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" name="email" id="email" placeholder="Digite o seu e-mail" value="<?php echo $email; ?>" required>
+            </div>
+
+            <div class="row button">
+                <button type="submit" name="SendRecoverPass" value="Recuperar">Recuperar</button>
+            </div>
+
+            <div class="signup-link">
+                <a href="<?php echo URLADM; ?>">Clique aqui</a> para acessar
+            </div>
+
+        </form>
+    </div>
+</div>

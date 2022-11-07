@@ -2,7 +2,11 @@
 
 namespace App\adms\Models;
 
-use Exception;
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 
 /**
  * Editar a imagem do usuário no banco de dados
@@ -52,6 +56,10 @@ class AdmsEditUsersImage
         return $this->resultBd;
     }
 
+    /**
+     * Metodo para pesquisar a imagem do usuário que será editada
+     * @return boolean
+     */
     public function viewUser(int $id): bool
     {
         $this->id = $id;
@@ -70,12 +78,20 @@ class AdmsEditUsersImage
             $this->result = true;
             return true;
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00'>Erro: Usuário não encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Usuário não encontrado!</p>";
             $this->result = false;
             return false;
         }
     }
 
+    /**
+     * Metodo recebe a informação da imagem que será editada
+     * Instancia o helper AdmsValEmptyField para validar os campos do formulário
+     * Retira o campo "new_image" da validação
+     * Se tiver uma imagem, chama o metodo valInput para validar a extensão, se não tiver, retorna falso     
+     * @param array|null $data
+     * @return void
+     */
     public function update(array $data = null): void
     {
         $this->data = $data;
@@ -90,7 +106,7 @@ class AdmsEditUsersImage
                 //$this->result = false;
                 $this->valInput();
             } else {
-                $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Necessário selecionar uma imagem!</p>";
+                $_SESSION['msg'] = "<p class='alert-danger'>Erro: Necessário selecionar uma imagem!</p>";
                 $this->result = false;
             }
         } else {
@@ -99,7 +115,8 @@ class AdmsEditUsersImage
     }
 
     /** 
-     * Verificar se existe o usuário com o ID recebido
+     * Verificar a extensão da imagem com o helper AdmsValExtImg
+     * Chama a função upload se a extensão for valida
      * Retorna FALSE quando houve algum erro
      * 
      * @return void
@@ -109,13 +126,18 @@ class AdmsEditUsersImage
         $valExtImg = new \App\adms\Models\helper\AdmsValExtImg();
         $valExtImg->validateExtImg($this->dataImagem['type']);
         if (($this->viewUser($this->data['id'])) and ($valExtImg->getResult())) {
-            $this->result = false;
             $this->upload();
         } else {
             $this->result = false;
         }
     }
 
+    /**
+     * Metodo gera o slug da imagem com o helper AdmsSlug
+     * Faz o upload da imagem com o helper AdmsUploadImgRes
+     * Chama a função edit para salvar o nome da imagem no banco de dados
+     * @return void
+     */
     private function upload(): void
     {
         $slugImg = new \App\adms\Models\helper\AdmsSlug();
@@ -136,6 +158,11 @@ class AdmsEditUsersImage
         }
     }
 
+    /**
+     * Metodo salva as informações no banco de dados
+     * Chama a função deleteImage
+     * @return void
+     */
     private function edit(): void
     {
         $this->data['image'] = $this->nameImg;
@@ -147,11 +174,16 @@ class AdmsEditUsersImage
         if ($upUser->getResult()) {
             $this->deleteImage();
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário não editado com sucesso!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Usuário não editado com sucesso!</p>";
             $this->result = false;
         }
     }
 
+    /**
+     * Apaga a imagem antiga do usuário
+     *
+     * @return void
+     */
     private function deleteImage(): void
     {
         if (((!empty($this->resultBd[0]['image'])) or ($this->resultBd[0]['image'] != null)) and ($this->resultBd[0]['image'] != $this->nameImg)) {
@@ -161,7 +193,7 @@ class AdmsEditUsersImage
             }
         }
 
-        $_SESSION['msg'] = "<p style='color: green;'>Imagem editada com sucesso!</p>";
+        $_SESSION['msg'] = "<p class='alert-success'>Imagem editada com sucesso!</p>";
         $this->result = true;
     }
 }

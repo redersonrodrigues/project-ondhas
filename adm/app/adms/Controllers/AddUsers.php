@@ -1,7 +1,11 @@
 <?php
 
 namespace App\adms\Controllers;
-
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Controller da página cadastrar novo usuário
  * @author Réderson <rederson@ramartecnologia.com.br>
@@ -16,7 +20,8 @@ class AddUsers
     private array|null $dataForm;
 
     /**
-     * Instantiar a classe responsável em carregar a View e enviar os dados para View.
+     * Método cadastrar usuário
+     * Receber os dados do formulário.
      * Quando o usuário clicar no botão "cadastrar" do formulário da página novo usuário. Acessa o IF e instância a classe "AdmsAddUsers" responsável em cadastrar o usuário no banco de dados.
      * Usuário cadastrado com sucesso, redireciona para a página listar registros.
      * Senão, instância a classe responsável em carregar a View e enviar os dados para View.
@@ -45,7 +50,8 @@ class AddUsers
     }
 
     /**
-     * Instantiar a classe responsável em carregar a View e enviar os dados para View.
+     * Instanciar a MODELS e o método "listSelect" responsável em buscar os dados para preencher o campo SELECT 
+     * Instanciar a classe responsável em carregar a View e enviar os dados para View.
      * 
      */
     private function viewAddUser(): void
@@ -53,7 +59,10 @@ class AddUsers
         $listSelect = new \App\adms\Models\AdmsAddUsers();
         $this->data['select'] = $listSelect->listSelect();
 
+        $this->data['sidebarActive'] = "list-users"; 
+        
         $loadView = new \Core\ConfigView("adms/Views/users/addUser", $this->data);
         $loadView->loadView();
     }
 }
+

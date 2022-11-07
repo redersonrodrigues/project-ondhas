@@ -2,6 +2,11 @@
 
 namespace App\adms\Models\helper;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Classe genérica para validar se os campos estão preenchidos
  *
@@ -40,7 +45,7 @@ class AdmsValEmptyField
         $this->data = array_map('trim', $this->data);
 
         if(in_array('', $this->data)){
-            $_SESSION['msg'] = "<p style='color: #f00'>Erro: Necessário preencher todos os campos!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Necessário preencher todos os campos!</p>";
             $this->result = false;
         }else{
             $this->result = true;

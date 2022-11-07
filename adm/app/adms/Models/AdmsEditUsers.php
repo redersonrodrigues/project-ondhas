@@ -2,6 +2,12 @@
 
 namespace App\adms\Models;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 /**
  * Editar o usuário no banco de dados
  *
@@ -25,22 +31,23 @@ class AdmsEditUsers
     /** @var array|null $dataExitVal Recebe os campos que devem ser retirados da validação */
     private array|null $dataExitVal;
 
-    /**
-     * @return bool Retorna true quando executar o processo com sucesso e false quando houver erro
-     */
+    /** @return bool Retorna true quando executar o processo com sucesso e false quando houver erro */
     function getResult(): bool
     {
         return $this->result;
     }
 
-    /**
-     * @return bool Retorna os detalhes do registro
-     */
+    /** @return bool Retorna os detalhes do registro */
     function getResultBd(): array|null
     {
         return $this->resultBd;
     }
 
+    /**
+     * Metodo recebe como parametro o ID que será usado para verificar se tem o registro cadastrado no banco de dados
+     * @param integer $id
+     * @return void
+     */
     public function viewUser(int $id): void
     {
         $this->id = $id;
@@ -58,11 +65,19 @@ class AdmsEditUsers
         if ($this->resultBd) {
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00'>Erro: Usuário não encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Usuário não encontrado!</p>";
             $this->result = false;
         }
     }
 
+    /**
+     * Metodo recebe as informações do usuário que serão validadas
+     * Instancia o helper AdmsValEmptyField para validar os campos do formulário     
+     * Retira o campo opcional "nickname" da validação
+     * Chama o metodo valInput para validar os campos especificos do formulário
+     * @param array|null $data
+     * @return void
+     */
     public function update(array $data = null): void
     {
         $this->data = $data;
@@ -83,8 +98,8 @@ class AdmsEditUsers
      * Instanciar o helper "AdmsValEmail" para verificar se o e-mail válido
      * Instanciar o helper "AdmsValEmailSingle" para verificar se o e-mail não está cadastrado no banco de dados, não permitido cadastro com e-mail duplicado
      * Instanciar o helper "validatePassword" para validar a senha
-     * Instanciar o helper "validateUserSingleLogin" para verificar se o usuário não está cadastrado no banco de dados, não permitido cadastro com usuário duplicado
-     * Instanciar o método "add" quando não houver nenhum erro de preenchimento 
+     * Instanciar o helper "validateUserSingle" para verificar se o usuário não está cadastrado no banco de dados, não permitido cadastro com usuário duplicado
+     * Instanciar o método "edit" quando não houver nenhum erro de preenchimento 
      * Retorna FALSE quando houve algum erro
      * 
      * @return void
@@ -107,6 +122,10 @@ class AdmsEditUsers
         }
     }
 
+    /**
+     * Metodo envia as informações editadas para o banco de dados
+     * @return void
+     */
     private function edit(): void
     {
         $this->data['modified'] = date("Y-m-d H:i:s");
@@ -116,14 +135,18 @@ class AdmsEditUsers
         $upUser->exeUpdate("adms_users", $this->data, "WHERE id=:id", "id={$this->data['id']}");
 
         if ($upUser->getResult()) {
-            $_SESSION['msg'] = "<p style='color: green;'>Usuário editado com sucesso!</p>";
+            $_SESSION['msg'] = "<p class='alert-success'>Usuário editado com sucesso!</p>";
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário não editado com sucesso!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Usuário não editado com sucesso!</p>";
             $this->result = false;
         }
     }
 
+    /**
+     * Metodo pesquisa as informações que serão usadas no dropdown do formulário
+     * @return array
+     */
     public function listSelect(): array
     {
         $list = new \App\adms\Models\helper\AdmsRead();

@@ -1,7 +1,11 @@
 <?php
 
 namespace App\adms\Controllers;
-
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Controller da página editar nova senha
  * @author Réderson <rederson@ramartecnologia.com.br>
@@ -18,9 +22,15 @@ class UpdatePassword
     /** @var array $dataForm Recebe os dados do formulario */
     private array|null $dataForm;
 
+    
     /**
-     * Instantiar a classe responsável em carregar a View e enviar os dados para View.
+     * Método editar nova senha na página de login.
+     * Receber a chave que vem na URL.
+     * Receber os dados do formulário.
      * 
+     * Se existir a chave na URL e o usuário não clicou no botão "SendUpPass". Instancia o método para validar a chave.
+     * Senão instancia o método para editar a senha.
+     *
      * @return void
      */
     public function index(): void
@@ -36,6 +46,13 @@ class UpdatePassword
         }
     }
 
+    /**
+     * Validar a chave.
+     * Instancia a MODELS responsável em validar a chave, se a chave for válida carrega o formulário.
+     * Senão, redireciona para a página de login.
+     *
+     * @return void
+     */
     private function validateKey(): void
     {
         $valKey = new \App\adms\Models\AdmsUpdatePassword();
@@ -48,6 +65,13 @@ class UpdatePassword
         }
     }
 
+    /**
+     * Editar a senha.
+     * Se o usuário não clicou no botão "SendUpPass" no formulário, redireciona para a página de login.
+     * Acessa o IF quando usuário clicou no botão "SendUpPass" no formulário. Instancia a MODELS e envia os dados da nova senha do usuário. Se editar redireciona para a página de login. Senão, carrega o formulário.
+     *
+     * @return void
+     */
     private function updatePassword(): void
     {
         if (!empty($this->dataForm['SendUpPass'])) {
@@ -62,12 +86,16 @@ class UpdatePassword
                 $this->viewUpdatePassword();
             }
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Link inválido, solicite novo link <a href='" . URLADM . "recover-password/index'>clique aqui</a>!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Link inválido, solicite novo link <a href='" . URLADM . "recover-password/index'>clique aqui</a>!</p>";
             $urlRedirect = URLADM . "login/index";
             header("Location: $urlRedirect");
         }
     }
 
+    /**
+     * Instanciar a classe responsável em carregar a View e enviar os dados para View.
+     * 
+     */
     private function viewUpdatePassword(): void
     {
         $loadView = new \Core\ConfigView("adms/Views/login/updatePassword", $this->data);

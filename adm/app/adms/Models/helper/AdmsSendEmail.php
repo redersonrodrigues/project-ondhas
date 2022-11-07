@@ -2,6 +2,12 @@
 
 namespace App\adms\Models\helper;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -47,6 +53,13 @@ class AdmsSendEmail
         return $this->fromEmail;
     }
 
+    /**
+     * Metodo recebe o conteúdo do e-mail que será enviado
+     * Chama o metodo infoPhpMailer
+     * @param array $data
+     * @param integer $optionConfEmail
+     * @return void
+     */
     public function sendEmail(array $data, int $optionConfEmail): void
     {
         $this->optionConfEmail = $optionConfEmail;
@@ -55,6 +68,12 @@ class AdmsSendEmail
         $this->infoPhpMailer();
     }
 
+    /**
+     * Metodo faz a pesquisa das credenciais do servidor no banco de dados para que o e-mail seja enviado
+     * Chama o metodo sendEmailPhpMailer
+     * Retorna FALSE caso tenha algum erro
+     * @return void
+     */
     private function infoPhpMailer(): void
     {
         $confEmail = new \App\adms\Models\helper\AdmsRead();
@@ -76,6 +95,11 @@ class AdmsSendEmail
         }
     }
 
+    /**
+     * Metodo conteḿ a configuração de acentuação do e-mail, credenciais, endereço do e-mail e o corpo do e-mail
+     * Retorna FALSE caso tenha algum erro
+     * @return void
+     */
     private function sendEmailPhpMailer(): void
     {
         $mail = new PHPMailer(true);

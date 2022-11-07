@@ -1,4 +1,11 @@
 <?php
+
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 if (isset($this->data['form'])) {
     $valorForm = $this->data['form'];
 }
@@ -7,43 +14,61 @@ if (isset($this->data['form'][0])) {
     $valorForm = $this->data['form'][0];
 }
 ?>
+<!-- Inicio do conteudo do administrativo -->
+<div class="wrapper">
+    <div class="row">
+        <div class="top-list">
+            <span class="title-content">Editar Senha</span>
+            <div class="top-list-right">
+                <?php
+                echo "<a href='" . URLADM . "list-users/index' class='btn-info'>Listar</a> ";
+                if (isset($valorForm['id'])) {
+                    echo "<a href='" . URLADM . "view-users/index/" . $valorForm['id'] . "' class='btn-primary'>Visualizar</a><br><br>";
+                }
+                ?>
+            </div>
+        </div>
 
-<h1>Editar Senha</h1>
+        <div class="content-adm-alert">
+            <?php
+            if (isset($_SESSION['msg'])) {
+                echo $_SESSION['msg'];
+                unset($_SESSION['msg']);
+            }
+            ?>
+            <span id="msg"></span>
+        </div>
 
-<?php
+        <div class="content-adm">
+            <form method="POST" action="" id="form-edit-user-pass" class="form-adm">
+                <?php
+                $id = "";
+                if (isset($valorForm['id'])) {
+                    $id = $valorForm['id'];
+                }
+                ?>
+                <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
 
-echo "<a href='" . URLADM . "list-users/index'>Listar</a><br>";
-if (isset($valorForm['id'])) {
-    echo "<a href='" . URLADM . "view-users/index/" . $valorForm['id'] . "'>Visualizar</a><br><br>";
-}
+                <div class="row-input">
+                    <div class="column">
+                        <?php
+                        $password = "";
+                        if (isset($valorForm['password'])) {
+                            $password = $valorForm['password'];
+                        }
+                        ?>
+                        <label class="title-input">Senha:<span class="text-danger">*</span></label>
+                        <input type="password" name="password" id="password" class="input-adm" placeholder="Digite a senha" onkeyup="passwordStrength()" autocomplete="on" value="<?php echo $password; ?>" required>
+                        <span id="msgViewStrength"></span>
+                    </div>
+                </div>
 
-if (isset($_SESSION['msg'])) {
-    echo $_SESSION['msg'];
-    unset($_SESSION['msg']);
-}
-?>
-<span id="msg"></span>
+                <p class="text-danger mb-5 fs-4">* Campo Obrigatório</p>
 
-<form method="POST" action="" id="form-edit-user-pass">
-    <?php
-    $id = "";
-    if (isset($valorForm['id'])) {
-        $id = $valorForm['id'];
-    }
-    ?>
-    <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+                <button type="submit" name="SendEditUserPass" class="btn-warning" value="Salvar">Salvar</button>
 
-    <?php
-    $password = "";
-    if (isset($valorForm['password'])) {
-        $password = $valorForm['password'];
-    }
-    ?>
-    <label>Senha:<span style="color: #f00;">*</span> </label>
-    <input type="password" name="password" id="password" placeholder="Digite a nova senha" onkeyup="passwordStrength()" autocomplete="on" value="<?php echo $password; ?>" required>
-    <span id="msgViewStrength"><br><br></span>
-
-    <span style="color: #f00;">* Campo Obrigatório</span><br><br>
-
-    <button type="submit" name="SendEditUserPass" value="Salvar">Salvar</button>
-</form>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Fim do conteudo do administrativo -->

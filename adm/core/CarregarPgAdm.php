@@ -1,7 +1,11 @@
 <?php
 
 namespace Core;
-
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Verificar se existe a classe
  * Carregar a CONTROLLER
@@ -87,11 +91,11 @@ class CarregarPgAdm
      */
     private function pgPrivate():void
     {
-        $this->listPgPrivate = ["Dashboard", "ListUsers", "ViewUsers", "AddUsers", "EditUsers", "EditUsersPassword", "EditUsersImage", "DeleteUsers"];
+        $this->listPgPrivate = ["Dashboard", "ListUsers", "ViewUsers", "AddUsers", "EditUsers", "EditUsersPassword", "EditUsersImage", "DeleteUsers", "ViewProfile", "EditProfile", "EditProfilePassword", "EditProfileImage", "ListSitsUsers", "ViewSitsUsers", "AddSitsUsers", "EditSitsUsers", "DeleteSitsUsers", "ListColors", "ViewColors", "AddColors", "EditColors", "DeleteColors", "ListConfEmails", "ViewConfEmails", "AddConfEmails", "EditConfEmails", "EditConfEmailsPassword", "DeleteConfEmails"];
         if(in_array($this->urlController, $this->listPgPrivate)){
             $this->verifyLogin();
         }else{
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Página não encontrada!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Página não encontrada!</p>";
             $urlRedirect = URLADM . "login/index";
             header("Location: $urlRedirect");
         }
@@ -107,7 +111,7 @@ class CarregarPgAdm
         if((isset($_SESSION['user_id'])) and (isset($_SESSION['user_name']))  and (isset($_SESSION['user_email'])) ){
             $this->classLoad = "\\App\\adms\\Controllers\\" . $this->urlController;
         }else{
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Para acessar a página realize o login!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Para acessar a página realize o login!</p>";
             $urlRedirect = URLADM . "login/index";
             header("Location: $urlRedirect");
         }

@@ -1,6 +1,11 @@
 <?php
 
 namespace App\adms\Controllers;
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
 
  * Controller da página login
@@ -18,9 +23,14 @@ class Login
     private array|null $dataForm;
 
     /**
-     * Instantiar a classe responsável em carregar a View e enviar os dados para View.
+     * Método validar login.
+     * 
+     * Receber os dados do formulário.
+     * 
      * Quando o usuário clicar no botão "acessar" do formulário da página de login. Acessa o IF e instância a classe "AdmsLogin" responsável em validar o usuário e a senha.
      * Dados do login corretos, redireciona para a página dashboard.
+     * 
+     * Dados incorretos ou o usuário não clicou no botão instancia a classe responsável em carregar a View e enviar os dados para View.
      * 
      * @return void
      */

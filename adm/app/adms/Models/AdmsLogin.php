@@ -2,6 +2,12 @@
 
 namespace App\adms\Models;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 /**
  * Validar os dados do login
  *
@@ -30,7 +36,7 @@ class AdmsLogin
     /** 
      * Recebe os valores do formulário.
      * Recupera as informações do usuário no banco de dados
-     * Quando encontrar o usuário no banco de dados instanciar o método "valPassword" para validar a senha 
+     * Quando encontrar o usuário no banco de dados instanciar o método "valEmailPerm" para validar a situação do usuário
      * Retorna FALSE quando não encontrar usuário no banco de dados
      * 
      * @param array $data Recebe as informações do formulário
@@ -48,26 +54,34 @@ class AdmsLogin
         if ($this->resultBd) {
             $this->valEmailPerm();
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário ou a senha incorreta!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Usuário ou a senha incorreta!</p>";
             $this->result = false;
         }
     }
 
+    /**
+     * Metodo valida a situação do usuário
+     * Se a situação for 1, chama chama a função valPassword para validar a senha
+     * Se a situação for 3, retorna falso, pois, o usuario precisar confirmar o e-mail.
+     * Se a situação for 5, retorna falso, pois, o e-mail do usuário foi descadastrado.
+     * Se a situação for 2, retorna falso, pois, o e-mail esta inativo
+     * @return void
+     */
     private function valEmailPerm(): void
     {
         if ($this->resultBd[0]['adms_sits_user_id'] == 1) {
             $this->valPassword();
         } elseif ($this->resultBd[0]['adms_sits_user_id'] == 3) {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Necessário confirmar o e-mail, solicite novo link <a href='".URLADM."new-conf-email/index'>Clique aqui</a>!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Necessário confirmar o e-mail, solicite novo link <a href='".URLADM."new-conf-email/index'>Clique aqui</a>!</p>";
             $this->result = false;
         } elseif ($this->resultBd[0]['adms_sits_user_id'] == 5) {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: E-mail descadastrado, entre em contato com a empresa!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: E-mail descadastrado, entre em contato com a empresa!</p>";
             $this->result = false;
         } elseif ($this->resultBd[0]['adms_sits_user_id'] == 2) {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: E-mail inativo, entre em contato com a empresa!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: E-mail inativo, entre em contato com a empresa!</p>";
             $this->result = false;
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: E-mail inativo, entre em contato com a empresa!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: E-mail inativo, entre em contato com a empresa!</p>";
             $this->result = false;
         }
     }
@@ -90,7 +104,7 @@ class AdmsLogin
             $_SESSION['user_image'] = $this->resultBd[0]['image'];
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário ou a senha incorreta!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Usuário ou a senha incorreta!</p>";
             $this->result = false;
         }
     }

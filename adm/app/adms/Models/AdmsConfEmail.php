@@ -2,15 +2,17 @@
 
 namespace App\adms\Models;
 
-use App\adms\Models\helper\AdmsConn;
-use PDO;
-
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Confirmar o cadastro do usuário, alterando a situação no banco de dados
  *
  * @author Réderson
  */
-class AdmsConfEmail extends AdmsConn
+class AdmsConfEmail
 {
 
     /** @var string $key Recebe a chave para confirmar o cadastro */
@@ -22,6 +24,7 @@ class AdmsConfEmail extends AdmsConn
     /** @var array|null $resultBd Recebe os registros do banco de dados */
     private array|null $resultBd;
 
+    /** @var array $dataSave Salva as informações no banco de dados */
     private array $dataSave;
 
     /**
@@ -33,7 +36,8 @@ class AdmsConfEmail extends AdmsConn
     }
 
     /** 
-     * 
+     * Metodo recebe como parametro a chave que será usada para pesquisar e confirmar o e-mail
+     * Chama o metodo updateSitUser que atualiza a informação na tabela adms_users
      * @return void
      */
     public function confEmail(string $key): void
@@ -49,15 +53,19 @@ class AdmsConfEmail extends AdmsConn
             if ($this->resultBd) {
                 $this->updateSitUser();
             } else {
-                $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Necessário confirmar o e-mail, solicite novo link <a href='".URLADM."new-conf-email/index'>Clique aqui</a>!</p>";
+                $_SESSION['msg'] = "<p class='alert-danger'>Erro: Necessário confirmar o e-mail, solicite novo link <a href='".URLADM."new-conf-email/index'>Clique aqui</a>!</p>";
                 $this->result = false;
             }
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Necessário confirmar o e-mail, solicite novo link <a href='".URLADM."new-conf-email/index'>Clique aqui</a>!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Necessário confirmar o e-mail, solicite novo link <a href='".URLADM."new-conf-email/index'>Clique aqui</a>!</p>";
             $this->result = false;
         }
     }
 
+    /**
+     * Metodo atualiza as informações referentes a confirmação do e-mail e da situação do usuário na tabela adms_users
+     * @return void
+     */
     private function updateSitUser(): void
     {
         $this->dataSave['conf_email'] = null;
@@ -68,10 +76,10 @@ class AdmsConfEmail extends AdmsConn
         $upConfEmail->exeUpdate("adms_users", $this->dataSave, "WHERE id=:id", "id={$this->resultBd[0]['id']}");
 
         if ($upConfEmail->getResult()) {
-            $_SESSION['msg'] = "<p style='color: green;'>E-mail ativado com sucesso!</p>";
+            $_SESSION['msg'] = "<p class='alert-success'>E-mail ativado com sucesso!</p>";
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Necessário confirmar o e-mail, solicite novo link <a href='".URLADM."new-conf-email/index'>Clique aqui</a>!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Necessário confirmar o e-mail, solicite novo link <a href='".URLADM."new-conf-email/index'>Clique aqui</a>!</p>";
             $this->result = false;
         }
     }

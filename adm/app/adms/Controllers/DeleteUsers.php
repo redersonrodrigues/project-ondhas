@@ -1,7 +1,11 @@
 <?php
 
 namespace App\adms\Controllers;
-
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Controller da página apagar usuário
  * @author Réderson <rederson@ramartecnologia.com.br>
@@ -12,6 +16,15 @@ class DeleteUsers
     /** @var int|string|null $id Recebe o id do registro */
     private int|string|null $id;
     
+    /**
+     * Método apagar usuário
+     * Se existir o ID na URL instancia a MODELS para excluir o registro no banco de dados
+     * Senão criar a mensagem de erro
+     * Redireciona para a página listar usuários
+     *
+     * @param integer|string|null|null $id
+     * @return void
+     */
     public function index(int|string|null $id = null): void
     {
 
@@ -20,7 +33,7 @@ class DeleteUsers
             $deleteUser = new \App\adms\Models\AdmsDeleteUsers();
             $deleteUser->deleteUser($this->id);            
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Necessário selecionar um usuário!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Necessário selecionar um usuário!</p>";
         }
 
         $urlRedirect = URLADM . "list-users/index";

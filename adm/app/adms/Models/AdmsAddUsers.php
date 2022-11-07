@@ -2,6 +2,12 @@
 
 namespace App\adms\Models;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 /**
  * Cadastrar o usuário no banco de dados
  *
@@ -15,6 +21,7 @@ class AdmsAddUsers
     /** @var bool $result Recebe true quando executar o processo com sucesso e false quando houver erro */
     private bool $result;
 
+    /** @var array Recebe as informações que serão usadas no dropdown do formulário*/
     private array $listRegistryAdd;
 
     /**
@@ -96,14 +103,19 @@ class AdmsAddUsers
         $createUser->exeCreate("adms_users", $this->data);
 
         if ($createUser->getResult()) {
-            $_SESSION['msg'] = "<p style='color: green;'>Usuário cadastrado com sucesso!</p>";
+            $_SESSION['msg'] = "<p class='alert-success'>Usuário cadastrado com sucesso!</p>";
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário não cadastrado com sucesso!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Usuário não cadastrado com sucesso!</p>";
             $this->result = false;
         }
     }
 
+    /**
+     * Metodo para pesquisar as informações que serão usadas no dropdown do formulário
+     *
+     * @return array
+     */
     public function listSelect(): array
     {
         $list = new \App\adms\Models\helper\AdmsRead();

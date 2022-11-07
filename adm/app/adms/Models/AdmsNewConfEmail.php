@@ -2,15 +2,18 @@
 
 namespace App\adms\Models;
 
-use App\adms\Models\helper\AdmsConn;
-use PDO;
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 
 /**
  * Solicitar novo link para confirmar o e-mail
  *
  * @author Réderson
  */
-class AdmsNewConfEmail extends AdmsConn
+class AdmsNewConfEmail 
 {
 
     /** @var array|null $data Recebe as informações do formulário */
@@ -41,6 +44,12 @@ class AdmsNewConfEmail extends AdmsConn
     }
 
     /** 
+     * Recebe os valores do formulário.
+     * Instancia o helper "AdmsValEmptyField" para verificar se todos os campos estão preenchidos 
+     * Chama o metodo valUser para validar o usuário
+     * Retorna FALSE quando algum campo está vazio
+     * 
+     * @param array $data Recebe as informações do formulário
      * 
      * @return void
      */
@@ -56,6 +65,12 @@ class AdmsNewConfEmail extends AdmsConn
         }
     }
 
+    /**
+     * Metodo faz a pesquisa no banco de dados para verificar se o usuário esta cadastrado no banco de dados
+     * Chama o metodo valConfEmail para validar o link de confirmação
+     *
+     * @return void
+     */
     private function valUser(): void
     {
         $newConfEmail = new \App\adms\Models\helper\AdmsRead();
@@ -70,11 +85,18 @@ class AdmsNewConfEmail extends AdmsConn
         if ($this->resultBd) {
             $this->valConfEmail();
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: E-mail não cadastrado!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: E-mail não cadastrado!</p>";
             $this->result = false;
         }
     }
 
+    /**
+     * Metodo valida o link de confirmação
+     * Se o link não tiver cadastrado no banco de dados, é salvo no banco de dados um nuvo link
+     * Chama o metodo sendEmail para enviar o link para o e-mail do usuário
+     *
+     * @return void
+     */
     private function valConfEmail(): void
     {
         if ((empty($this->resultBd[0]['conf_email'])) or ($this->resultBd[0]['conf_email'] == NULL)) {
@@ -88,7 +110,7 @@ class AdmsNewConfEmail extends AdmsConn
                 $this->resultBd[0]['conf_email'] = $this->dataSave['conf_email'];
                 $this->sendEmail();
             }else{
-                $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Link não enviado, tente novamente!</p>";
+                $_SESSION['msg'] = "<p class='alert-danger'>Erro: Link não enviado, tente novamente!</p>";
                 $this->result = false;
             }
         } else {
@@ -96,6 +118,12 @@ class AdmsNewConfEmail extends AdmsConn
         }
     }
 
+    /**
+     * Metodo instancia o helper AdmsSendEmail para enviar o email para o usuario
+     * Chama o metodo emailHTML para enviar o corpo do e-mail com tags HTML
+     * Chama o metodo emailText para enviar o corpo do e-mail apenas com o texto
+     * @return void
+     */
     private function sendEmail(): void
     {
         $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();
@@ -103,15 +131,20 @@ class AdmsNewConfEmail extends AdmsConn
         $this->emailText();
         $sendEmail->sendEmail($this->emailData, 2);
         if ($sendEmail->getResult()) {
-            $_SESSION['msg'] = "<p style='color: green;'>Novo link enviado com sucesso. Acesse a sua caixa de e-mail para confimar o e-mail!</p>";
+            $_SESSION['msg'] = "<p class='alert-success'>Novo link enviado com sucesso. Acesse a sua caixa de e-mail para confimar o e-mail!</p>";
             $this->result = true;
         } else {
             $this->fromEmail = $sendEmail->getFromEmail();
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Link não enviado, tente novamente ou entre em contato com o e-mail {$this->fromEmail}!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Link não enviado, tente novamente ou entre em contato com o e-mail {$this->fromEmail}!</p>";
             $this->result = false;
         }
     }
 
+    /**
+     * Metodo envia o corpo do e-mail com tags HTML e o link para o usuário confirmar o e-mail
+     *
+     * @return void
+     */
     private function emailHTML(): void
     {
         $name = explode(" ", $this->resultBd[0]['name']);
@@ -129,6 +162,10 @@ class AdmsNewConfEmail extends AdmsConn
         $this->emailData['contentHtml'] .= "Esta mensagem foi enviada a você pela empresa XXX.<br>Você está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.<br><br>";
     }
 
+    /**
+     * Metodo envia o corpo do e-mail apenas com o texto e o link para o usuário confirmar o e-mail
+     * @return void
+     */
     private function emailText(): void
     {
         $this->emailData['contentText'] = "Prezado(a) {$this->firstName}\n\n";

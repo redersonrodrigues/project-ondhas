@@ -1,7 +1,11 @@
 <?php
 
 namespace App\adms\Controllers;
-
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Controller da página recuperar senha
  * @author Réderson <rederson@ramartecnologia.com.br>
@@ -16,7 +20,12 @@ class RecoverPassword
     private array|null $dataForm;
 
     /**
-     * Instantiar a classe responsável em carregar a View e enviar os dados para View.
+     * Método recuperar senha na página de login.
+     * Receber os dados do formulário.
+     * 
+     * Se o usuário clicou no botão recuperar senha, instancia a MODELS para salvar os dados do usuário no banco de dados sobre o novo link para recuperar senha, se editar corretamente redireciona para a página de login, senão carrega o formulário novamente.
+     * 
+     * Se o usuário não clicar no botão acessa o ELSE e instancia o método "viewRecoverPass" para carrega o formulário.
      * 
      * @return void
      */
@@ -40,6 +49,10 @@ class RecoverPassword
         }
     }
 
+    /**
+     * Instanciar a classe responsável em carregar a View e enviar os dados para View.
+     * 
+     */
     private function viewRecoverPass(): void
     {
         $loadView = new \Core\ConfigView("adms/Views/login/recoverPassword", $this->data);

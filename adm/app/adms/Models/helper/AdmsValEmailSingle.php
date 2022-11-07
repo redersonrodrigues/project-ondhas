@@ -2,10 +2,16 @@
 
 namespace App\adms\Models\helper;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 /**
  * Classe genêrica para validar o e-mail único, somente um cadatrado pode utilizar o e-mail
  *
- * @author Réderson / rederson@ramartecnologia.com.br
+ * @author Réderson
  */
 class AdmsValEmailSingle
 {
@@ -63,7 +69,7 @@ class AdmsValEmailSingle
         if (!$this->resultBd) {
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Este e-mail já está cadastrado!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Este e-mail já está cadastrado!</p>";
             $this->result = false;
         }
     }

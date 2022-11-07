@@ -1,6 +1,10 @@
 <?php
 namespace Core;
-
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /*
  * Carregar as páginas da View
  * 
@@ -28,6 +32,7 @@ class ConfigView
     {
         if(file_exists('app/' .$this->nameView . '.php')){
             include 'app/adms/Views/include/head.php';
+            include 'app/adms/Views/include/navbar.php';
             include 'app/adms/Views/include/menu.php';
             include 'app/' .$this->nameView . '.php';
             include 'app/adms/Views/include/footer.php';
@@ -45,9 +50,9 @@ class ConfigView
     public function loadViewLogin():void
     {
         if(file_exists('app/' .$this->nameView . '.php')){
-            include 'app/adms/Views/include/head.php';
+            include 'app/adms/Views/include/head_login.php';
             include 'app/' .$this->nameView . '.php';
-            include 'app/adms/Views/include/footer.php';
+            include 'app/adms/Views/include/footer_login.php';
         }else{
             die("Erro - 005: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
         }

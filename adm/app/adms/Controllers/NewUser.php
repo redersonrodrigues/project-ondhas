@@ -1,7 +1,11 @@
 <?php
 
 namespace App\adms\Controllers;
-
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Controller da página novo usuário
  * @author Réderson <redeson@ramartecnologia.com.br>
@@ -16,9 +20,10 @@ class NewUser
     private array|null $dataForm;
 
     /**
-     * Instantiar a classe responsável em carregar a View e enviar os dados para View.
+     * Método cadastrar usuário na página de login.
+     * Receber os dados do formulário.
      * Quando o usuário clicar no botão "cadastrar" do formulário da página novo usuário. Acessa o IF e instância a classe "AdmsNewUser" responsável em cadastrar o usuário no banco de dados.
-     * Usuário cadastrado com sucesso, redireciona para a página a página de login.
+     * Usuário cadastrado com sucesso, redireciona para a página de login.
      * Senão, instância a classe responsável em carregar a View e enviar os dados para View.
      * 
      * @return void
@@ -46,7 +51,7 @@ class NewUser
     }
 
     /**
-     * Instantiar a classe responsável em carregar a View e enviar os dados para View.
+     * Instanciar a classe responsável em carregar a View e enviar os dados para View.
      * 
      */
     private function viewNewUser(): void

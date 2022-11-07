@@ -2,13 +2,19 @@
 
 namespace App\adms\Models\helper;
 
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
+
 use PDO;
 use PDOException;
 
 /**
  * Classe gernérica para cadastrar registro no banco de dados
  *
- * @author Réderson rederson@ramartecnologia.com.br
+ * @author Réderson
  */
 class AdmsCreate extends AdmsConn
 {
@@ -50,8 +56,6 @@ class AdmsCreate extends AdmsConn
     {
         $this->table = $table;
         $this->data = $data;
-        //var_dump($this->table);
-        //var_dump($this->data);
         $this->exeReplaceValues();        
     }
 
@@ -63,11 +67,8 @@ class AdmsCreate extends AdmsConn
     private function exeReplaceValues(): void
     {
         $coluns = implode(', ', array_keys($this->data));
-        //var_dump($coluns);
         $values = ':' . implode(', :', array_keys($this->data));
-        //var_dump($values);
         $this->query = "INSERT INTO {$this->table} ($coluns) VALUES ($values)";
-        //var_dump($this->query);
         $this->exeInstruction();
     }
 

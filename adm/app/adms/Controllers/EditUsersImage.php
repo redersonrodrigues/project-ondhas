@@ -1,7 +1,11 @@
 <?php
 
 namespace App\adms\Controllers;
-
+// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+if (!defined('R1A0M4A2R2')) {
+    header("Location: /");
+    die("Erro: Página não encontrada!");
+}
 /**
  * Controller da página editar imagem do usuário
  * @author Réderson <rederson@ramartecnologia.com.br>
@@ -19,10 +23,12 @@ class EditUsersImage
     private int|string|null $id;
 
     /**
-     * Instantiar a classe responsável em carregar a View e enviar os dados para View.
-     * Quando o usuário clicar no botão "cadastrar" do formulário da página novo usuário. Acessa o IF e instância a classe "AdmsAddUsers" responsável em cadastrar o usuário no banco de dados.
-     * Usuário cadastrado com sucesso, redireciona para a página listar registros.
-     * Senão, instância a classe responsável em carregar a View e enviar os dados para View.
+     * Método editar imagem do usuário.
+     * Receber os dados do formulário.
+     * 
+     * Se o parâmetro ID e diferente de vazio e o usuário não clicou no botão editar, instancia a MODELS para recuperar as informações do usuário no banco de dados, se encontrar instancia o método "viewEditUserImage". Se não existir redireciona para o listar usuários.
+     * 
+     * Se não existir o usuário clicar no botão acessa o ELSE e instancia o método "editUserImage".
      * 
      * @return void
      */
@@ -32,7 +38,7 @@ class EditUsersImage
 
         if ((!empty($id)) and (empty($this->dataForm['SendEditUserImage']))) {
             $this->id = (int) $id;
-            $viewUser = new \App\adms\Models\AdmsEditUsers();
+            $viewUser = new \App\adms\Models\AdmsEditUsersImage();
             $viewUser->viewUser($this->id);
             if ($viewUser->getResult()) {
                 $this->data['form'] = $viewUser->getResultBd();
@@ -47,15 +53,24 @@ class EditUsersImage
     }
 
     /**
-     * Instantiar a classe responsável em carregar a View e enviar os dados para View.
+     * Instanciar a classe responsável em carregar a View e enviar os dados para View.
      * 
      */
     private function viewEditUserImage(): void
     {
+        $this->data['sidebarActive'] = "list-users"; 
         $loadView = new \Core\ConfigView("adms/Views/users/editUserImage", $this->data);
         $loadView->loadView();
     }
 
+    /**
+     * Editar imagem do usuario.
+     * Se o usuário clicou no botão, instancia a MODELS responsável em receber os dados e editar no banco de dados.
+     * Verifica se editou corretamente o usuário no banco de dados.
+     * Se o usuário não clicou no botão redireciona para página listar usuarios.
+     *
+     * @return void
+     */
     private function editUserImage(): void
     {
         if (!empty($this->dataForm['SendEditUserImage'])) {
@@ -71,7 +86,7 @@ class EditUsersImage
                 $this->viewEditUserImage();
             }
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário não encontrado!</p>";
+            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Usuário não encontrado!</p>";
             $urlRedirect = URLADM . "list-users/index";
             header("Location: $urlRedirect");
         }
