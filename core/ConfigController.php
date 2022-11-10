@@ -3,7 +3,7 @@
 namespace Core;
 
 // Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
-if (!defined('R1A0M4A2R2')) {
+if (!defined('C7E3L8K9E5')) {
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
@@ -12,9 +12,8 @@ if (!defined('R1A0M4A2R2')) {
  * Recebe a URL e manipula
  * Carregar a CONTROLLER
  * 
- * @author Rédeson <rederson@ramartecnologia.com.br>
+ * @author Cesar <cesar@celke.com.br>
  */
-
 class ConfigController extends Config
 {
     /** @var string $url Recebe a URL do .htaccess */

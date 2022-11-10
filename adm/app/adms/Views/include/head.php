@@ -1,8 +1,7 @@
 <?php
-// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
-if (!defined('R1A0M4A2R2')) {
+if(!defined('C8L6K7E')){
     header("Location: /");
-    die("Erro: Página não encontrada!");
+    die("Erro: Página não encontrada<br>");
 }
 ?>
 <!DOCTYPE html>
@@ -14,6 +13,6 @@ if (!defined('R1A0M4A2R2')) {
         <!-- Incluir os icones do font-awesome da CDN -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
         <link rel="stylesheet" href="<?php echo URLADM; ?>app/adms/assets/css/custom_adms.css">
-        <title>ONDHAS - Administrativo</title>
+        <title>Celke - Administrativo</title>
     </head>
     <body>

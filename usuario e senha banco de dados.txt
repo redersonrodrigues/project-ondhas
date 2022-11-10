@@ -1,3 +1,0 @@
-banco de dados: ramart14_ondhas
-usuario: ramart14_admin
-senha: qEsB=roBU57L

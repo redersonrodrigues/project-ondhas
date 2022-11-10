@@ -1,9 +1,9 @@
 {
-    "description": "Projeto Ondhas",
+    "description": "Projeto Celke",
     "authors": [
         {
-            "name": "Ramar Tecnologia",
-            "email": "atendimento@ramartecnologia.com.br"
+            "name": "Cesar Szpak",
+            "email": "cesar@celke.com.br"
         }
     ],
     "autoload": {

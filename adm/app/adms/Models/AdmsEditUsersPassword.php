@@ -1,16 +1,16 @@
 <?php
 
 namespace App\adms\Models;
-// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
-if (!defined('R1A0M4A2R2')) {
+
+if(!defined('C8L6K7E')){
     header("Location: /");
-    die("Erro: Página não encontrada!");
+    die("Erro: Página não encontrada<br>");
 }
 
 /**
  * Editar a senha do usuário no banco de dados
  *
- * @author Réderson
+ * @author Celke
  */
 class AdmsEditUsersPassword
 {

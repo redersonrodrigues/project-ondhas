@@ -1,6 +1,7 @@
-<?php 
+<?php
+
 // Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
-if (!defined('R1A0M4A2R2')) {
+if (!defined('C7E3L8K9E5')) {
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
@@ -9,7 +10,7 @@ if (!defined('R1A0M4A2R2')) {
 <nav class="navbar">
     <div class="max-width">
         <div class="logo">
-            <a href="<?php echo URL; ?>">Ondhas</a>
+            <a href="<?php echo URL; ?>">Celke</a>
         </div>
         <ul class="menu" id="menu-site">
             <li><a href="<?php echo URL; ?>">Home</a></li>

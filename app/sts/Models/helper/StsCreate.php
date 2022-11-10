@@ -5,15 +5,17 @@ namespace Sts\Models\helper;
 use PDOException;
 
 // Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
-if (!defined('R1A0M4A2R2')) {
+if (!defined('C7E3L8K9E5')) {
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
+
 /**
- * Classe genérica para cadastrar registro no BD
- * 
- * @author Réderson <rederson@ramartecnologia.com.br>
+ * Classe gernérica para cadastrar registro no banco de dados
+ *
+ * @author Celke
  */
+
 class StsCreate extends StsConn
 {
 
@@ -45,7 +47,7 @@ class StsCreate extends StsConn
     }
 
     /**
-     * Cadastrar no banco de dados
+     * Cadatrar no banco de dados
      * 
      * @param string $table Recebe o nome da tabela
      * @param array $data Recebe os dados do formulário

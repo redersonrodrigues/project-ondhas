@@ -1,6 +1,7 @@
-<?php 
+<?php
+
 // Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
-if (!defined('R1A0M4A2R2')) {
+if (!defined('C7E3L8K9E5')) {
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
@@ -21,7 +22,7 @@ if (!defined('R1A0M4A2R2')) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- Colocar o titulo na aba do navegador -->
-    <title>Ondhas</title>
+    <title>Celke</title>
 </head>
 
 <body>

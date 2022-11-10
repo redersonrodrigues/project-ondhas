@@ -3,30 +3,30 @@
 namespace Sts\Controllers;
 
 // Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
-if (!defined('R1A0M4A2R2')) {
+if (!defined('C7E3L8K9E5')) {
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
 
 /**
- * Controller da página Home
- * //http://localhost/project-ondhas/app/sts/Controllers/Erro.php
- * @author Réderson <rederson@ramartecnologia.com.br>
+ * Controller da página Erro
+ *
+ * @author Cesar <cesar@celke.com.br>
  */
 class Erro
 {
- /** @var array|string|null $dados Recebe os dados que devem ser enviados para VIEW */
- 
- private array|string|null $data;
+    
+    /** @var array|string|null $dados Recebe os dados que devem ser enviados para VIEW */
+    private array|string|null $data;
 
- /**
-  * Instanciar a classe responsável em carregar a View
-  * 
-  * @return void
-  */
+    /**
+     * Instantiar a classe responsável em carregar a View
+     * 
+     * @return void
+     */
     public function index()
     {
-		$this->data = null;
+        $this->data = null;
         $loadView= new \Core\ConfigView("sts/Views/erro/erro", $this->data);
         $loadView->loadView();
     }

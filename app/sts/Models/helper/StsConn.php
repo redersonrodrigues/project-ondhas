@@ -6,7 +6,7 @@ use PDO;
 use PDOException;
 
 // Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
-if (!defined('R1A0M4A2R2')) {
+if (!defined('C7E3L8K9E5')) {
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
@@ -14,7 +14,7 @@ if (!defined('R1A0M4A2R2')) {
 /**
  * Conexão com o banco de dados
  *
- * @author Réderson rederson@ramartecnologia.com.br
+ * @author Celke
  */
 abstract class StsConn
 {

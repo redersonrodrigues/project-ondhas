@@ -3,7 +3,7 @@
 namespace Sts\Models;
 
 // Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
-if (!defined('R1A0M4A2R2')) {
+if (!defined('C7E3L8K9E5')) {
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
@@ -11,9 +11,8 @@ if (!defined('R1A0M4A2R2')) {
 /**
  * Models responsável em buscar os dados da página sobre empresa
  *
- * @author Réderson rederson@ramartecnologia.com.br
+ * @author Celke
  */
-
 class StsSobreEmpresa
 {
     /** @var array|null $data Recebe os registros do banco de dados */

@@ -4,7 +4,7 @@
         <div class="bars">
             <i class="fa-solid fa-bars"></i>
         </div>
-        <img src="<?php echo URLADM; ?>app/adms/assets/image/logo/logo.png" alt="ONDHAS" class="logo">
+        <img src="<?php echo URLADM; ?>app/adms/assets/image/logo/logo.png" alt="Celke" class="logo">
     </div>
 
     <div class="navbar-content">        

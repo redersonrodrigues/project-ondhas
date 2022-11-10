@@ -1,5 +1,8 @@
 001 - AdmsConn.php - Erro de conexão com o banco de dados
 002 - ConfigView.php - Erro ao carregar a VIEW
 003 - CarregarPgAdm.php - Erro carregar a classe
-004 - CarregarPgAdm.php - Erro carregar o método
+004 - CarregarPgAdm.php - Erro carregar a método
 005 - ConfigView.php - Erro ao carregar a VIEW Login
+006 - CarregarPgAdm.php - Erro carregar a pagina ou pagina nao existe
+007 - CarregarPgAdm.php - Erro carregar a pagina ou pagina nao existe no pacote sts
+008 - ConfigView.php - Erro ao carregar a VIEW do pacote sts

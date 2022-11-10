@@ -1,9 +1,8 @@
 <?php
 
-// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
-if (!defined('R1A0M4A2R2')) {
+if (!defined('C8L6K7E')) {
     header("Location: /");
-    die("Erro: Página não encontrada!");
+    die("Erro: Página não encontrada<br>");
 }
 
 $sidebar_active = "";
@@ -22,7 +21,7 @@ if (isset($this->data['sidebarActive'])) {
         } ?>
         <a href="<?php echo URLADM; ?>dashboard/index" class="sidebar-nav <?php echo $dashboard; ?>"><i class="icon fa-solid fa-house"></i><span>Dashboard</span></a>
 
-        <?php 
+        <?php
         $sidebar_user = "";
         $list_users = "";
         if ($sidebar_active == "list-users") {
@@ -55,6 +54,24 @@ if (isset($this->data['sidebarActive'])) {
             $list_conf_emails = "active";
         } ?>
         <a href="<?php echo URLADM; ?>list-conf-emails/index" class="sidebar-nav <?php echo $list_conf_emails; ?>"><i class="icon fa-solid fa-envelope"></i><span>Configurações de E-mail</span></a>
+
+
+
+        <?php
+        $sidebar_page_home = "";
+        $list_page_home = "";
+        if ($sidebar_active == "view-page-home") {
+            $list_page_home = "active";
+            $sidebar_page_home = "active";
+        } ?>
+
+        <button class="dropdown-btn <?php echo $sidebar_page_home; ?>">
+            <i class="icon fa-solid fa-globe"></i><span>Site</span><i class="fa-solid fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container <?php echo $sidebar_page_home; ?>">
+            <a href="<?php echo URLADM; ?>view-page-home/index" class="sidebar-nav <?php echo $list_page_home; ?>"><i class="icon fa-solid fa-house"></i><span>Home</span></a>
+        </div>
+
 
         <a href="<?php echo URLADM; ?>logout/index" class="sidebar-nav"><i class="icon fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span></a>
 

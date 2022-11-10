@@ -1,15 +1,16 @@
 <?php
 
 namespace Core;
-// Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
-if (!defined('R1A0M4A2R2')) {
+
+if(!defined('C8L6K7E')){
     header("Location: /");
-    die("Erro: Página não encontrada!");
+    die("Erro: Página não encontrada<br>");
 }
+
 /**
  * Verificar se existe a classe
  * Carregar a CONTROLLER
- * @author Rédeson <rederson@ramartecnologia.com.br>
+ * @author Cesar <cesar@celke.com.br>
  */
 class CarregarPgAdm
 {
@@ -46,11 +47,24 @@ class CarregarPgAdm
         if (class_exists($this->classLoad)) {
             $this->loadMetodo();
         } else {
-            die("Erro - 003: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
-            /*$this->urlController = $this->slugController(CONTROLLER);
-            $this->urlMetodo = $this->slugMetodo(METODO);
-            $this->urlParameter = "";
-            $this->loadPage($this->urlController, $this->urlMetodo, $this->urlParameter);*/
+            $this->loadClassSts();
+            //die("Erro - 003: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
+            
+        }
+    }
+    
+    /**
+     * Verificar se existe a classe ou a pagina no pacote sts
+     *
+     * @return void
+     */
+    private function loadClassSts(): void
+    {
+        $this->classLoad = "\\App\\sts\\Controllers\\" . $this->urlController;
+        if (class_exists($this->classLoad)) {
+            $this->loadMetodo();
+        } else {
+            die("Erro - 007: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
         }
     }
 
@@ -91,13 +105,14 @@ class CarregarPgAdm
      */
     private function pgPrivate():void
     {
-        $this->listPgPrivate = ["Dashboard", "ListUsers", "ViewUsers", "AddUsers", "EditUsers", "EditUsersPassword", "EditUsersImage", "DeleteUsers", "ViewProfile", "EditProfile", "EditProfilePassword", "EditProfileImage", "ListSitsUsers", "ViewSitsUsers", "AddSitsUsers", "EditSitsUsers", "DeleteSitsUsers", "ListColors", "ViewColors", "AddColors", "EditColors", "DeleteColors", "ListConfEmails", "ViewConfEmails", "AddConfEmails", "EditConfEmails", "EditConfEmailsPassword", "DeleteConfEmails"];
+        $this->listPgPrivate = ["Dashboard", "ListUsers", "ViewUsers", "AddUsers", "EditUsers", "EditUsersPassword", "EditUsersImage", "DeleteUsers", "ViewProfile", "EditProfile", "EditProfilePassword", "EditProfileImage", "ListSitsUsers", "ViewSitsUsers", "AddSitsUsers", "EditSitsUsers", "DeleteSitsUsers", "ListColors", "ViewColors", "AddColors", "EditColors", "DeleteColors", "ListConfEmails", "ViewConfEmails", "AddConfEmails", "EditConfEmails", "EditConfEmailsPassword", "DeleteConfEmails", "ViewPageHome", "EditHomeTop", "EditHomeServ", "EditHomePrem", "EditHomeTopImg", "EditHomePremImg"];
         if(in_array($this->urlController, $this->listPgPrivate)){
             $this->verifyLogin();
         }else{
-            $_SESSION['msg'] = "<p class='alert-danger'>Erro: Página não encontrada!</p>";
+            die("Erro - 006: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
+            /*$_SESSION['msg'] = "<p class='alert-danger'>Erro: Página não encontrada!</p>";
             $urlRedirect = URLADM . "login/index";
-            header("Location: $urlRedirect");
+            header("Location: $urlRedirect");*/
         }
     }
 

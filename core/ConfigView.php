@@ -3,7 +3,7 @@
 namespace Core;
 
 // Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
-if (!defined('R1A0M4A2R2')) {
+if (!defined('C7E3L8K9E5')) {
     header("Location: /");
     die("Erro: Página não encontrada!");
 }
@@ -11,7 +11,7 @@ if (!defined('R1A0M4A2R2')) {
 /**
  * Carregar as páginas da View
  * 
- * @author Réderson <rederson@ramartecnologia.com.br>
+ * @author Cesar <cesar@celke.com.br>
  */
 class ConfigView
 {
@@ -22,7 +22,7 @@ class ConfigView
      * @param array|string|null $data Dados que a VIEW deve receber.
      */
     public function __construct(private string $nameView, private array|string|null $data)
-    {
+    {        
     }
 
     /**
@@ -35,7 +35,7 @@ class ConfigView
     {
         if (file_exists('app/' . $this->nameView . '.php')) {
             include 'app/sts/Views/include/header.php';
-			include 'app/sts/Views/include/menu.php';
+            include 'app/sts/Views/include/menu.php';
             include 'app/' . $this->nameView . '.php';
             include 'app/sts/Views/include/footer.php';
         } else {
