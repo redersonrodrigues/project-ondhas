@@ -18,7 +18,13 @@ if (!defined('C7E3L8K9E5')) {
         ?>
                 <div class="about-content">
                     <div class="column left">
-                        <img src="<?php echo URL . 'app/sts/assets/images/about/' . $id . "/" . $image; ?>" alt="Sobre Empresa">
+                        <?php
+                        if (!empty($image)) {
+                            echo "<img src='" . URLADM . "app/sts/assets/image/about/$id/$image' alt='$title'>";
+                        } else {
+                            echo "<img src='" . URLADM . "app/sts/assets/image/about/icon_about_comp.jpg' alt='$title'>";
+                        }
+                        ?>
                     </div>
                     <div class="column right">
                         <div class="text"><?php echo $title; ?></div>

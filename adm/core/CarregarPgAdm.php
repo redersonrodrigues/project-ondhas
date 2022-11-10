@@ -105,7 +105,7 @@ class CarregarPgAdm
      */
     private function pgPrivate():void
     {
-        $this->listPgPrivate = ["Dashboard", "ListUsers", "ViewUsers", "AddUsers", "EditUsers", "EditUsersPassword", "EditUsersImage", "DeleteUsers", "ViewProfile", "EditProfile", "EditProfilePassword", "EditProfileImage", "ListSitsUsers", "ViewSitsUsers", "AddSitsUsers", "EditSitsUsers", "DeleteSitsUsers", "ListColors", "ViewColors", "AddColors", "EditColors", "DeleteColors", "ListConfEmails", "ViewConfEmails", "AddConfEmails", "EditConfEmails", "EditConfEmailsPassword", "DeleteConfEmails", "ViewPageHome", "EditHomeTop", "EditHomeServ", "EditHomePrem", "EditHomeTopImg", "EditHomePremImg"];
+        $this->listPgPrivate = ["Dashboard", "ListUsers", "ViewUsers", "AddUsers", "EditUsers", "EditUsersPassword", "EditUsersImage", "DeleteUsers", "ViewProfile", "EditProfile", "EditProfilePassword", "EditProfileImage", "ListSitsUsers", "ViewSitsUsers", "AddSitsUsers", "EditSitsUsers", "DeleteSitsUsers", "ListColors", "ViewColors", "AddColors", "EditColors", "DeleteColors", "ListConfEmails", "ViewConfEmails", "AddConfEmails", "EditConfEmails", "EditConfEmailsPassword", "DeleteConfEmails", "ViewPageHome", "EditHomeTop", "EditHomeServ", "EditHomePrem", "EditHomeTopImg", "EditHomePremImg", "ListAboutsComp", "ViewAboutsComp", "AddAboutsComp", "EditAboutsComp", "EditAboutsCompImage", "DeleteAboutsComp"];
         if(in_array($this->urlController, $this->listPgPrivate)){
             $this->verifyLogin();
         }else{

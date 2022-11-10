@@ -65,11 +65,18 @@ if (isset($this->data['sidebarActive'])) {
             $sidebar_page_home = "active";
         } ?>
 
+        <?php $list_abouts_comp = "";
+        if ($sidebar_active == "list-abouts-comp") {
+            $list_abouts_comp = "active";
+            $sidebar_page_home = "active";
+        } ?>
+
         <button class="dropdown-btn <?php echo $sidebar_page_home; ?>">
             <i class="icon fa-solid fa-globe"></i><span>Site</span><i class="fa-solid fa-caret-down"></i>
         </button>
         <div class="dropdown-container <?php echo $sidebar_page_home; ?>">
             <a href="<?php echo URLADM; ?>view-page-home/index" class="sidebar-nav <?php echo $list_page_home; ?>"><i class="icon fa-solid fa-house"></i><span>Home</span></a>
+            <a href="<?php echo URLADM; ?>list-abouts-comp/index" class="sidebar-nav <?php echo $list_abouts_comp; ?>"><i class="icon fa-solid fa-building"></i><span>Sobre Empresa</span></a>
         </div>
 
 

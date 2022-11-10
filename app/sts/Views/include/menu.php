@@ -10,7 +10,7 @@ if (!defined('C7E3L8K9E5')) {
 <nav class="navbar">
     <div class="max-width">
         <div class="logo">
-            <a href="<?php echo URL; ?>">Celke</a>
+            <img src="./app/sts/assets/images/logo/logo_fundo_preto_ondhas.jpeg" alt="some text" width=65 height=45>
         </div>
         <ul class="menu" id="menu-site">
             <li><a href="<?php echo URL; ?>">Home</a></li>

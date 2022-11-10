@@ -259,3 +259,35 @@ if (formEditHomePrev) {
         }
     });
 }
+
+const formEditAboutCompTop = document.getElementById("form-add-abouts-comp");
+if (formEditAboutCompTop) {
+    formEditAboutCompTop.addEventListener("submit", async(e) => {
+        //Receber o valor do campo
+        var title = document.querySelector("#title").value;
+        // Verificar se o campo esta vazio
+        if (title === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo título!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var description = document.querySelector("#description").value;
+        // Verificar se o campo esta vazio
+        if (description === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo descrição!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var sts_situation_id = document.querySelector("#sts_situation_id").value;
+        // Verificar se o campo esta vazio
+        if (sts_situation_id === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo situação!</p>";
+            return;
+        }
+    });
+}
