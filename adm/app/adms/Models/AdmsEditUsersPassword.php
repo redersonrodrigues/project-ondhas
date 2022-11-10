@@ -10,7 +10,7 @@ if(!defined('C8L6K7E')){
 /**
  * Editar a senha do usuário no banco de dados
  *
- * @author Celke
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class AdmsEditUsersPassword
 {

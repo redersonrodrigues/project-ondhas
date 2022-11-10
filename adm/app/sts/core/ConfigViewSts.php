@@ -10,7 +10,7 @@ if(!defined('C8L6K7E')){
 /**
  * Carregar as paginas da View sts
  * 
- * @author Cesar <cesar@celke.com.br>
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class ConfigViewSts
 {

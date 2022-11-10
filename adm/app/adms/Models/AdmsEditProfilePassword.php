@@ -10,7 +10,7 @@ if(!defined('C8L6K7E')){
 /**
  * Editar a senha do perfil do usuario
  *
- * @author Celke
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class AdmsEditProfilePassword
 {

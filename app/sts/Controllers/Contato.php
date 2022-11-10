@@ -10,8 +10,8 @@ if (!defined('C7E3L8K9E5')) {
 
 /**
  * Controller da página Contato
- * http://localhost/celke/app/sts/Controllers/Contato.php
- * @author Cesar <cesar@celke.com.br>
+ * http://localhost/project-ondhas/app/sts/Controllers/Contato.php
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class Contato
 {

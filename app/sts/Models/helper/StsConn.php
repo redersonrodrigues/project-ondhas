@@ -14,7 +14,7 @@ if (!defined('C7E3L8K9E5')) {
 /**
  * Conexão com o banco de dados
  *
- * @author Celke
+ * @author Réderson
  */
 abstract class StsConn
 {

@@ -13,7 +13,7 @@ use PDO;
 /**
  * Conexão com o banco de dados
  *
- * @author Celke
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 abstract class AdmsConn
 {

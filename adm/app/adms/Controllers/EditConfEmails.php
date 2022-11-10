@@ -9,7 +9,7 @@ if (!defined('C8L6K7E')) {
 
 /**
  * Controller editar configuração de emails
- * @author Cesar <cesar@celke.com.br>
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class EditConfEmails
 {

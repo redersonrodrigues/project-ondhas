@@ -11,7 +11,7 @@ if (!defined('C7E3L8K9E5')) {
 /**
  * Carregar as páginas da View
  * 
- * @author Cesar <cesar@celke.com.br>
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class ConfigView
 {

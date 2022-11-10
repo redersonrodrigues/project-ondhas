@@ -14,7 +14,7 @@ use PDOException;
 /**
  * Helper responsável em buscar os registros no banco de dados
  *
- * @author Celke
+ * @author Réderson
  */
 class StsRead extends StsConn
 {

@@ -10,7 +10,7 @@ if(!defined('C8L6K7E')){
 /**
  * Recebe a URL e manipula
  * Carregar a CONTROLLER
- * @author Cesar <cesar@celke.com.br>
+ * @author Réderson <rederson@ramartecnologia.com.br>
  * 
  * https://www.php-fig.org/psr/
  * https://github.com/php-fig/fig-standards/blob/master/proposed/phpdoc.md

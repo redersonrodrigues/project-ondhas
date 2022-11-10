@@ -10,7 +10,7 @@ if (!defined('C8L6K7E')) {
 /**
  * Listar sobre empresa do banco de dados
  *
- * @author Celke
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class StsListAboutsComp
 {

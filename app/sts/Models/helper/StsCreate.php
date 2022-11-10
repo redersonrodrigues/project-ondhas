@@ -13,7 +13,7 @@ if (!defined('C7E3L8K9E5')) {
 /**
  * Classe gernérica para cadastrar registro no banco de dados
  *
- * @author Celke
+ * @author Réderson
  */
 
 class StsCreate extends StsConn

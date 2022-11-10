@@ -63,8 +63,5 @@ if (isset($this->data['form'])) {
             </div>
 
         </form>
-
-        Usuário: cesar@celke.com.br<br>
-        Senha: 123456a
     </div>
 </div>

@@ -10,7 +10,7 @@ if(!defined('C8L6K7E')){
 /**
  * Solicitar novo link para cadastrar nova senha
  *
- * @author Celke
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class AdmsRecoverPassword
 {

@@ -10,7 +10,7 @@ if(!defined('C8L6K7E')){
 /**
  * Configurações básicas do site.
  *
- * @author Cesar <cesar@celke.com.br>
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 
 abstract class Config

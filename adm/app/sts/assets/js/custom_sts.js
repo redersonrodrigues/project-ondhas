@@ -291,3 +291,258 @@ if (formEditAboutCompTop) {
         }
     });
 }
+
+const formEditContact = document.getElementById("form-edit-contact");
+if (formEditContact) {
+    formEditContact.addEventListener("submit", async(e) => {
+        //Receber o valor do campo
+        var title_contact = document.querySelector("#title_contact").value;
+        // Verificar se o campo esta vazio
+        if (title_contact === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo título!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var desc_contact = document.querySelector("#desc_contact").value;
+        // Verificar se o campo esta vazio
+        if (desc_contact === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo descrição!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var title_company = document.querySelector("#title_company").value;
+        // Verificar se o campo esta vazio
+        if (title_company === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo título da empresa!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var icon_company = document.querySelector("#icon_company").value;
+        // Verificar se o campo esta vazio
+        if (icon_company === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo ícone da empresa!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var desc_company = document.querySelector("#desc_company").value;
+        // Verificar se o campo esta vazio
+        if (desc_company === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo descição da empresa!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var title_address = document.querySelector("#title_address").value;
+        // Verificar se o campo esta vazio
+        if (title_address === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo título do endereço!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var icon_address = document.querySelector("#icon_address").value;
+        // Verificar se o campo esta vazio
+        if (icon_address === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo ícone do endereço!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var desc_address = document.querySelector("#desc_address").value;
+        // Verificar se o campo esta vazio
+        if (desc_address === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo descição do endereço!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var title_email = document.querySelector("#title_email").value;
+        // Verificar se o campo esta vazio
+        if (title_email === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo título do e-mail!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var icon_email = document.querySelector("#icon_email").value;
+        // Verificar se o campo esta vazio
+        if (icon_email === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo ícone do e-mail!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var desc_email = document.querySelector("#desc_email").value;
+        // Verificar se o campo esta vazio
+        if (desc_email === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo descição do e-mail!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var title_form = document.querySelector("#title_form").value;
+        // Verificar se o campo esta vazio
+        if (title_form === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo título do formulário!</p>";
+            return;
+        }
+    });
+}
+
+const formAddContactsMsgs = document.getElementById("form-add-contacts-msgs");
+if (formAddContactsMsgs) {
+    formAddContactsMsgs.addEventListener("submit", async(e) => {
+        //Receber o valor do campo
+        var name = document.querySelector("#name").value;
+        // Verificar se o campo esta vazio
+        if (name === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo nome!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var email = document.querySelector("#email").value;
+        // Verificar se o campo esta vazio
+        if (email === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo e-mail!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var subject = document.querySelector("#subject").value;
+        // Verificar se o campo esta vazio
+        if (subject === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo assunto!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var content = document.querySelector("#content").value;
+        // Verificar se o campo esta vazio
+        if (content === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo conteúdo!</p>";
+            return;
+        }
+    });
+}
+
+const formEditContactsMsgs = document.getElementById("form-edit-contacts-msgs");
+if (formEditContactsMsgs) {
+    formEditContactsMsgs.addEventListener("submit", async(e) => {
+        //Receber o valor do campo
+        var name = document.querySelector("#name").value;
+        // Verificar se o campo esta vazio
+        if (name === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo nome!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var email = document.querySelector("#email").value;
+        // Verificar se o campo esta vazio
+        if (email === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo e-mail!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var subject = document.querySelector("#subject").value;
+        // Verificar se o campo esta vazio
+        if (subject === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo assunto!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var content = document.querySelector("#content").value;
+        // Verificar se o campo esta vazio
+        if (content === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo conteúdo!</p>";
+            return;
+        }
+    });
+}
+
+const formAddSituations = document.getElementById("form-add-situations");
+if (formAddSituations) {
+    formAddSituations.addEventListener("submit", async(e) => {
+        //Receber o valor do campo
+        var name = document.querySelector("#name").value;
+        // Verificar se o campo esta vazio
+        if (name === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo nome!</p>";
+            return;
+        }        
+    });
+}
+
+const formEditSituations = document.getElementById("form-edit-situations");
+if (formEditSituations) {
+    formEditSituations.addEventListener("submit", async(e) => {
+        //Receber o valor do campo
+        var name = document.querySelector("#name").value;
+        // Verificar se o campo esta vazio
+        if (name === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo nome!</p>";
+            return;
+        }        
+    });
+}
+
+const formEditFooter = document.getElementById("form-edit-footer");
+if (formEditFooter) {
+    formEditFooter.addEventListener("submit", async(e) => {
+        //Receber o valor do campo
+        var footer_desc = document.querySelector("#footer_desc").value;
+        // Verificar se o campo esta vazio
+        if (footer_desc === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo descrição!</p>";
+            return;
+        }
+        
+        //Receber o valor do campo
+        var footer_text_link = document.querySelector("#footer_text_link").value;
+        // Verificar se o campo esta vazio
+        if (footer_text_link === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo texto do link!</p>";
+            return;
+        }
+
+        //Receber o valor do campo
+        var footer_link = document.querySelector("#footer_link").value;
+        // Verificar se o campo esta vazio
+        if (footer_link === "") {
+            e.preventDefault();
+            document.getElementById("msg").innerHTML = "<p class='alert-danger'>Erro: Necessário preencher o campo link!</p>";
+            return;
+        }
+    });
+}

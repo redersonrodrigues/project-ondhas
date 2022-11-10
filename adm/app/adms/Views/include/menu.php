@@ -71,12 +71,40 @@ if (isset($this->data['sidebarActive'])) {
             $sidebar_page_home = "active";
         } ?>
 
+        <?php $view_page_contact = "";
+        if ($sidebar_active == "view-page-contact") {
+            $view_page_contact = "active";
+            $sidebar_page_home = "active";
+        } ?>
+
+        <?php $list_contacts_msgs = "";
+        if ($sidebar_active == "list-contacts-msgs") {
+            $list_contacts_msgs = "active";
+            $sidebar_page_home = "active";
+        } ?>
+
+        <?php $list_situations = "";
+        if ($sidebar_active == "list-situations") {
+            $list_situations = "active";
+            $sidebar_page_home = "active";
+        } ?>
+
+        <?php $view_footer = "";
+        if ($sidebar_active == "view-footer") {
+            $view_footer = "active";
+            $sidebar_page_home = "active";
+        } ?>
+
         <button class="dropdown-btn <?php echo $sidebar_page_home; ?>">
             <i class="icon fa-solid fa-globe"></i><span>Site</span><i class="fa-solid fa-caret-down"></i>
         </button>
         <div class="dropdown-container <?php echo $sidebar_page_home; ?>">
             <a href="<?php echo URLADM; ?>view-page-home/index" class="sidebar-nav <?php echo $list_page_home; ?>"><i class="icon fa-solid fa-house"></i><span>Home</span></a>
             <a href="<?php echo URLADM; ?>list-abouts-comp/index" class="sidebar-nav <?php echo $list_abouts_comp; ?>"><i class="icon fa-solid fa-building"></i><span>Sobre Empresa</span></a>
+            <a href="<?php echo URLADM; ?>view-page-contact/index" class="sidebar-nav <?php echo $view_page_contact; ?>"><i class="icon fa-solid fa-phone"></i><span>Contato</span></a>
+            <a href="<?php echo URLADM; ?>list-contacts-msgs/index" class="sidebar-nav <?php echo $list_contacts_msgs; ?>"><i class="icon fa-solid fa-envelope"></i><span>Mensagens</span></a>
+            <a href="<?php echo URLADM; ?>list-situations/index" class="sidebar-nav <?php echo $list_situations; ?>"><i class="icon fa-solid fa-question"></i><span>Situações</span></a>
+            <a href="<?php echo URLADM; ?>view-footer/index" class="sidebar-nav <?php echo $view_footer; ?>"><i class="icon fa-solid fa-house"></i><span>Rodapé</span></a>
         </div>
 
 

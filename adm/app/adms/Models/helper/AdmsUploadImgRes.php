@@ -10,7 +10,7 @@ if(!defined('C8L6K7E')){
 /**
  * Classe gernérica para redimensionar a image
  *
- * @author Celke
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class AdmsUploadImgRes
 {

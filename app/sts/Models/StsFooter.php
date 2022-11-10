@@ -11,7 +11,7 @@ if (!defined('C7E3L8K9E5')) {
 /**
  * Models responsável em buscar os dados da página home
  *
- * @author Celke
+ * @author Réderson
  */
 class StsFooter
 {

@@ -10,7 +10,7 @@ if (!defined('C8L6K7E')) {
 /**
  * Editar cor no banco de dados
  *
- * @author Celke
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class StsEditHomePrem
 {

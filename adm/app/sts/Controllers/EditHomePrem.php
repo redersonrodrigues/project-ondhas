@@ -9,7 +9,7 @@ if (!defined('C8L6K7E')) {
 
 /**
  * Controller editar conteudo do serviço premium da pagina home
- * @author Cesar <cesar@celke.com.br>
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class EditHomePrem
 {

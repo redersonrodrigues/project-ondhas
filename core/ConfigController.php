@@ -12,7 +12,7 @@ if (!defined('C7E3L8K9E5')) {
  * Recebe a URL e manipula
  * Carregar a CONTROLLER
  * 
- * @author Cesar <cesar@celke.com.br>
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class ConfigController extends Config
 {

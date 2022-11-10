@@ -9,7 +9,7 @@ if (!defined('C8L6K7E')) {
 
 /**
  * Controller editar conteudo do topo da pagina home
- * @author Cesar <cesar@celke.com.br>
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class EditHomeTop
 {
@@ -54,8 +54,8 @@ class EditHomeTop
     private function viewEditHomeTop(): void
     {
         $this->data['sidebarActive'] = "view-page-home"; 
-        $loadView = new \Core\ConfigView("sts/Views/home/editHomeTop", $this->data);
-        $loadView->loadView();
+        $loadView = new \App\sts\core\ConfigViewSts("sts/Views/home/editHomeTop", $this->data);
+        $loadView->loadViewSts();
     }
 
     /**

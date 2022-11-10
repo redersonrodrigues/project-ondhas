@@ -10,7 +10,7 @@ if (!defined('C8L6K7E')) {
 /**
  * Editar a imagem do serviço premium da pagina home
  *
- * @author Celke
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class StsEditHomePremImg
 {

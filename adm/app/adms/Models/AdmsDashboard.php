@@ -10,7 +10,7 @@ if(!defined('C8L6K7E')){
 /**
  * Pagina inicial do sistema administrativo "dashboard"
  *
- * @author Celke
+ * @author Réderson <rederson@ramartecnologia.com.br>
  */
 class AdmsDashboard
 {

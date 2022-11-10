@@ -1,9 +1,9 @@
 {
-    "description": "Projeto Celke",
+    "description": "Projeto Site ONDHAS",
     "authors": [
         {
-            "name": "Cesar Szpak",
-            "email": "cesar@celke.com.br"
+            "name": "Réderson Rodrigues",
+            "email": "rederson@ramartecnologia.com.br"
         }
     ],
     "autoload": {
